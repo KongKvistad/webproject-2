@@ -56,21 +56,26 @@ export default function App() {
     } else{
       setAuth("reguser")
     }
-    let data = JSON.parse(localStorage.getItem('token'))
-    console.log(data)
+    // let data = JSON.parse(localStorage.getItem('token'))
+    // console.log(data)
   
   },[]);
+  if(auth){
+    return (
+      <UserContext.Provider value={auth}>
+      <Router>
+      <Route path= {["/","/home","/:token"]}>
+        <Home></Home>
+      </Route>
+      </Router>
+      </UserContext.Provider>
+     
+      );
+  }
+  else {
+    return(<h1></h1>)
+  }
   
-  return (
-  <UserContext.Provider value={auth}>
-  <Router>
-  <Route path= {["/","/home","/:token"]}>
-    <Home></Home>
-  </Route>
-  </Router>
-  </UserContext.Provider>
- 
-  );
 }
 
 
