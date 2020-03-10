@@ -11,13 +11,15 @@ export default class Canvas extends React.Component {
                     {
                     "name": "testverdi",
                     "dato": "22-08-2020",
-                    "sjef": "mordi"
+                    "owner": "vinmonopolet",
+                    "tags": ["ux", "css", "innsight"]
                     },
                     
                     {
                     "name":"monsterfabrikken",
                     "dato": "18-08-2020",
-                    "sjef": "max mekker"   
+                    "owner": "max mekker",
+                    "tags": ["ux", "css", "innsight"]
                     }
                 ],
 
@@ -25,13 +27,15 @@ export default class Canvas extends React.Component {
                     {
                     "name": "skrukork for skrullinger",
                     "dato": "22-08-2020",
-                    "sjef": "mordi"
+                    "owner": "vinmonopolet",
+                    "tags": ["ux", "css", "innsight"]
                     },
                     
                     {
                     "name": "bachelor #1",
                     "dato": "18-08-2020",
-                    "sjef": "max mekker"            
+                    "owner": "max mekker",
+                    "tags": ["ux", "css", "innsight"]             
                     }
                 ]
             },
