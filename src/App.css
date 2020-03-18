@@ -9,3 +9,14 @@
   cursor: pointer;
   width: 30%;
 }
+
+.boxes {
+  margin: 2%;
+  padding: 5%;
+  text-align: center;
+  border: 1px solid black;
+  display: inline-grid;
+  box-sizing: border-box;
+  
+
+}
