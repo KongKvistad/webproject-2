@@ -16,9 +16,10 @@ import { UserContext } from "../UserContext.js";
 export default function Home(props) {
     
     const user = useContext(UserContext)
-    console.log(user)
+    const userType = Object.keys(user)[0]
+    
 
-    if(user === "s_id" || user === "a_id"){
+    if(userType === "s_id" || userType === "a_id"){
       return (
         <Router>
         <Redirect to="/dashboard"></Redirect>    
@@ -31,7 +32,7 @@ export default function Home(props) {
             <Canvas></Canvas>
           </Route>
           <Route exact path="/dashboard">
-            <Window></Window>
+            <Window userData={user[userType]}></Window>
           </Route>
         </Switch>
         
