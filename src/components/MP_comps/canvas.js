@@ -44,9 +44,9 @@ export default class Canvas extends React.Component {
         } 
     }
 
-    componentDidMount(){
-        console.log(this.state.mpData)
-    }
+    // componentDidMount(){
+    //     console.log(this.state.mpData)
+    // }
     
     tabshandler = () => {
         return Object.keys(this.state.mpData).map((item, index) => (
