@@ -24,25 +24,37 @@ export default class Window extends React.Component {
               
               "internships": 
               {
-                "endDate": "1589798937",
+                "endDate": "1593560006",
                 "events":
-                {
-                "date":"1592649384",
-                "desc": "testymctest",
-                "where": "brighthouse"
-                },
-              
-              },
+                  [{
+                  "date":"1588721606",
+                  "desc": "testymctest",
+                  "where": "brighthouse"
+                  },
                 
+                  {
+                  "date":"1592649384",
+                  "desc": "testymctest",
+                  "where": "brighthouse"
+                  }              
+                  ],
+              },
               "projects": 
                 {
                   "endDate": "1590662184",
                   "events":
-                  {
-                  "date":"1590662184",
-                  "desc": "we be pullin' up in dis jam",
+                  [{
+                  "date":"1588721606",
+                  "desc": "testymctest",
                   "where": "brighthouse"
                   },
+                
+                  {
+                  "date":"1592649384",
+                  "desc": "testymctest",
+                  "where": "brighthouse"
+                  }              
+                  ],
                 
                 }
               }
@@ -73,7 +85,7 @@ export default class Window extends React.Component {
     const activePage = this.state.currPage;
       
       return  <div>
-                <ul>{this.tabshandler()}</ul>;
+                <ul>{this.tabshandler()}</ul>
                 <Timeline timeData={this.state.dbData.timeline[activePage]}></Timeline>
               </div>
     }
