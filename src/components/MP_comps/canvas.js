@@ -9,12 +9,26 @@ export default class Canvas extends React.Component {
             mpData: {
                 "internships":[
                     {
-                    "name": "testverdi",
+                    "name": "Testverdi",
                     "dato": "22-08-2020",
-                    "owner": "vinmonopolet",
+                    "owner": "Vinmonopolet",
                     "tags": ["ux", "css", "innsight"]
                     },
                     
+                    {
+                    "name":"monsterfabrikken",
+                    "dato": "18-08-2020",
+                    "owner": "max mekker",
+                    "tags": ["ux", "css", "innsight"]
+                    },
+
+                    {
+                    "name":"monsterfabrikken",
+                    "dato": "18-08-2020",
+                    "owner": "max mekker",
+                    "tags": ["ux", "css", "innsight"]
+                    },
+
                     {
                     "name":"monsterfabrikken",
                     "dato": "18-08-2020",
@@ -31,6 +45,20 @@ export default class Canvas extends React.Component {
                     "tags": ["ux", "css", "innsight"]
                     },
                     
+                    {
+                    "name": "bachelor #1",
+                    "dato": "18-08-2020",
+                    "owner": "max mekker",
+                    "tags": ["ux", "css", "innsight"]             
+                    },
+
+                    {
+                    "name": "skrukork for skrullinger",
+                    "dato": "22-08-2020",
+                    "owner": "vinmonopolet",
+                    "tags": ["ux", "css", "innsight"]
+                    },
+                        
                     {
                     "name": "bachelor #1",
                     "dato": "18-08-2020",
@@ -66,7 +94,7 @@ export default class Canvas extends React.Component {
         
       return (
         <div>
-            <h1 className="canvas">marketplace</h1>
+            <h1 className="canvas">Marketplace</h1>
             <ul>{this.tabshandler()}</ul>
             <BoxComp data ={this.boxhandler()}></BoxComp>
         </div>
