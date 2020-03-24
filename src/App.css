@@ -13,10 +13,16 @@
 .boxes {
   margin: 2%;
   padding: 5%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.box {
   text-align: center;
   border: 1px solid black;
-  display: inline-grid;
-  box-sizing: border-box;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
   
 
 .window{

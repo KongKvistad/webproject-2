@@ -11,9 +11,9 @@ export default class BoxComp extends React.Component {
 
         
         return (
-          <div>
+          <div class="boxes">
 
-              {this.props.data.map((item, idx) => <div class="boxes"><h2 key={idx}>{item.name}</h2>
+              {this.props.data.map((item, idx) => <div class="box"><h2 key={idx}>{item.name}</h2>
                                                                       <h3 key={idx}>by {item.owner}</h3>
                                                                       <ul>
                                                                           <li key={idx}>{item.tags}</li>
