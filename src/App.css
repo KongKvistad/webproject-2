@@ -1,15 +1,22 @@
 .canvas{
-  color: purple;
+  color: darkblue;
+  width: 30%;
+  margin-left: 40px;
+
 }
 
 .tab{
-  background-color: blue;
-  color: white;
-  padding: 5px;
+  border: 1px solid black;
+  background-color: lightblue;
+  color: black;
+  padding: 1%;
   cursor: pointer;
   width: 30%;
+  display: inline-block;
 }
 
+/*Dette er boksene som inneholder de forskjellige
+bachelor og internship mulighetene*/
 .boxes {
   margin: 2%;
   padding: 5%;
@@ -22,8 +29,9 @@
   border: 1px solid black;
   grid-row-start: 1;
   grid-row-end: 2;
+  display: inline-grid;
+  box-sizing: border-box;
 }
-  
 
 .window{
   
