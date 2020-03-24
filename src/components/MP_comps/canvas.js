@@ -9,9 +9,9 @@ export default class Canvas extends React.Component {
             mpData: {
                 "internships":[
                     {
-                    "name": "testverdi",
+                    "name": "Testverdi",
                     "dato": "22-08-2020",
-                    "owner": "vinmonopolet",
+                    "owner": "Vinmonopolet",
                     "tags": ["ux", "css", "innsight"]
                     },
                     
@@ -66,7 +66,7 @@ export default class Canvas extends React.Component {
         
       return (
         <div>
-            <h1 className="canvas">marketplace</h1>
+            <h1 className="canvas">Marketplace</h1>
             <ul>{this.tabshandler()}</ul>
             
             <BoxComp data ={this.boxhandler()}></BoxComp>
