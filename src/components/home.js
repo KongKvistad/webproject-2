@@ -24,8 +24,10 @@ export default function Home(props) {
         <Router>
         <Redirect to="/dashboard"></Redirect>    
         
-        <Link to="/dashboard">Dashboard</Link>
-        <Link to="/marketplace">Marketplace</Link>
+        <ul className="navbar">
+        <li><Link to="/dashboard">Dashboard</Link></li>
+        <li><Link to="/marketplace">Marketplace</Link></li>
+        </ul>
         
         <Switch>
           <Route exact path="/marketplace">
@@ -46,6 +48,7 @@ export default function Home(props) {
         <Link to="/marketplace">{user === "business" ? "Log out" : "login"}</Link>
         
         <Route exact path="/marketplace">
+            
             <Canvas></Canvas>
         </Route>
         

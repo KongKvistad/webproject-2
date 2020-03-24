@@ -1,3 +1,88 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+#root{
+  height: 100vh;
+}
+
+
+
+.navbar{
+  height: 5%;
+  display: flex;
+  
+}
+
+/* dashboard */
+
+.parentwind{
+  overflow: hidden;
+  height: 95%;
+ 
+}
+
+.slidewind{
+  width: 200vw;
+  height: 80%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.slidewind > ul {
+
+  display: flex;
+  padding: 0px;
+  top:10%;
+  justify-content: space-between;
+  list-style: none;
+  position: absolute;
+  z-index: 1;
+  font-size: 2vw;
+  
+}
+
+.intern-li{
+  margin-right: 8vw;
+  min-width: 10vw;
+  text-align: center;
+  cursor: pointer;
+}
+.proj-li{
+  min-width: 10vw;
+  text-align: center;
+  cursor: pointer;
+}
+
+
+.catboxes{
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+}
+.box-row{
+  display: flex;
+  height: 75%;
+  width: 50%;
+  
+  justify-content: space-evenly;
+  align-items: center;
+
+}
+
+.dashbox{
+  width: 15%;
+  height: 40%;
+  border: 1px solid black;
+}
+
+
+
+/* marketplace */
 .canvas{
   color: purple;
 }
@@ -17,8 +102,5 @@
   border: 1px solid black;
   display: inline-grid;
   box-sizing: border-box;
-  
-
-.window{
   
 }
