@@ -20,6 +20,20 @@ export default class Canvas extends React.Component {
                     "dato": "18-08-2020",
                     "owner": "max mekker",
                     "tags": ["ux", "css", "innsight"]
+                    },
+
+                    {
+                    "name":"monsterfabrikken",
+                    "dato": "18-08-2020",
+                    "owner": "max mekker",
+                    "tags": ["ux", "css", "innsight"]
+                    },
+
+                    {
+                    "name":"monsterfabrikken",
+                    "dato": "18-08-2020",
+                    "owner": "max mekker",
+                    "tags": ["ux", "css", "innsight"]
                     }
                 ],
 
@@ -31,6 +45,20 @@ export default class Canvas extends React.Component {
                     "tags": ["ux", "css", "innsight"]
                     },
                     
+                    {
+                    "name": "bachelor #1",
+                    "dato": "18-08-2020",
+                    "owner": "max mekker",
+                    "tags": ["ux", "css", "innsight"]             
+                    },
+
+                    {
+                    "name": "skrukork for skrullinger",
+                    "dato": "22-08-2020",
+                    "owner": "vinmonopolet",
+                    "tags": ["ux", "css", "innsight"]
+                    },
+                        
                     {
                     "name": "bachelor #1",
                     "dato": "18-08-2020",

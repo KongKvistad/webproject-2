@@ -18,18 +18,20 @@
 /*Dette er boksene som inneholder de forskjellige
 bachelor og internship mulighetene*/
 .boxes {
-  margin: 2%;
-  padding: 5%;
+  margin: 3%;
+  border: 1px solid black;
+  padding: 3%;
   display: grid;
   grid-template-columns: auto auto auto;
+  grid-gap: 4%;
 }
 
 .box {
   text-align: center;
   border: 1px solid black;
-  grid-row-start: 1;
-  grid-row-end: 2;
   display: inline-grid;
+  max-width: 100%;
+  width: 25em;
   box-sizing: border-box;
 }
 
