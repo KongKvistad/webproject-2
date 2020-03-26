@@ -21,7 +21,11 @@ export default class Desc extends React.Component {
             <PopContext.Consumer>
             {(context) => (
                 <div className={context.state ? "popup-open" : "popup-closed"}>
+                <p>Lukk</p>
+                <div className="content">
                 <p onClick = {() => context.setDesc(false)}>{context.state.owner}</p>
+                </div>
+              
                 </div>
             )}
                 
