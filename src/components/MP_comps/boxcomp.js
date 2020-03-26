@@ -8,7 +8,7 @@ export default class BoxComp extends React.Component {
         console.log(this.props)
     }
     tagshandler = (item) => {
-      return item.map((x, idx) => <p key={idx}>{x}</p>)
+      return item.map((x, idx) => <ul className="tagslist"><li key={idx}>{x}</li></ul>)
     }
     render() {
         

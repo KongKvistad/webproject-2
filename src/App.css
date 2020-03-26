@@ -103,22 +103,47 @@
 /*Dette er boksene som inneholder de forskjellige
 bachelor og internship mulighetene*/
 .boxes {
-  margin: 3%;
-  border: 1px solid black;
-  padding: 3%;
   display: grid;
   grid-template-columns: auto auto auto;
-  grid-gap: 4%;
+}
+
+@media screen and (max-width:800px) {
+  .boxes {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
 }
 
 .box {
-  text-align: center;
+  display: grid;
+  grid-template: 'h h h'
+                 'o o o'
+                 't t t';
+  grid-gap: 5px;
+  margin: 5%;
+  padding: 2%;
   border: 1px solid black;
-  display: inline-grid;
-  max-width: 100%;
-  width: 25em;
-  box-sizing: border-box;
- 
+  text-align: center;  
+}
+
+.box h2 {
+  grid-area: h;
+}
+
+.box h3 {
+  grid-area: o;
+}
+
+.tagslist {
+  list-style-type: none;
+}
+
+.tagslist li {
+  color: white;
+  margin: 2%;
+  border-radius: 3%;
+  background-color: teal;
+  grid-area: t;
 
 }
 
