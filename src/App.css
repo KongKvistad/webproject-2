@@ -134,6 +134,7 @@
   border-radius: 5px;
   padding: 0 5px;
   box-shadow: 2px 2px 3px rgb(119, 119, 119);
+  cursor: pointer;
 }
 /*Dette er boksene som inneholder de forskjellige
 bachelor og internship mulighetene*/
