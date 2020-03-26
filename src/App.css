@@ -12,7 +12,12 @@
 .navbar{
   height: 5%;
   display: flex;
-  
+  flex-direction: row-reverse;
+  background-color: #dde7ee;
+  list-style-type: none;
+}
+.navbar li {
+  padding-right: 20px;
 }
 
 /* dashboard */
@@ -84,7 +89,7 @@
 
 /* marketplace */
 .canvas{
-  color: darkblue;
+  color: #00509e; /*Denne blåfargen er NTNU blå*/
   width: 30%;
   margin-left: 40px;
 
@@ -121,12 +126,15 @@ bachelor og internship mulighetene*/
  
 
 }
+h1, h2 {
+  color: #00509e;
+}
 
 .popup-open{ /*Vinduet som popper opp når man trykker på en boks*/
   width: 70%;
   height: auto;
   padding: 30px;
-  background-color: #dde7ee;
+  background-color: #f4f7f9;
   border: 1px solid gray;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
