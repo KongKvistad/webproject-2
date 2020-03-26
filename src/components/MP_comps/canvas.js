@@ -96,7 +96,6 @@ export default class Canvas extends React.Component {
         <div>
             <h1 className="canvas">Marketplace</h1>
             <ul>{this.tabshandler()}</ul>
-            
             <BoxComp data ={this.boxhandler()}></BoxComp>
         </div>
       );

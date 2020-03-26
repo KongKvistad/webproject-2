@@ -45,7 +45,7 @@ export default function App() {
     //option 2: token is supplied in url
     else if (tokenChk.hasOwnProperty("s_id") || tokenChk.hasOwnProperty("a_id")){
       localStorage.setItem('token', JSON.stringify(tokenChk));
-      setAuth(Object.keys(tokenChk)[0])
+      setAuth(tokenChk)
     } 
     //option 3: user is a company and has registered before. 
     //this token is in that case set in the captcha process.
