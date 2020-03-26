@@ -1,23 +1,33 @@
 import React from "react";
 import '../../App.css';
+import { PopContext } from "../../popupContext.js"
 
 export default class BoxComp extends React.Component {
    
     componentDidMount(){
         console.log(this.props)
     }
-    tagshandler = (item, index) => {
-      return item.map(x => <p key={index}>{x}</p>)
+    tagshandler = (item) => {
+      return item.map((x, idx) => <p key={idx}>{x}</p>)
     }
     render() {
         
         
         return (
-          <div class="boxes">
+          <div className="boxes">
 
-              {this.props.data.map((item, idx) => <div class="box"><h2 key={idx}>{item.name}</h2>
-                                                                      <h3 key={idx}>by {item.owner}</h3>
-                                                                      {this.tagshandler(item.tags, idx)}</div>)}
+              {this.props.data.map((item, idx) =>
+              <PopContext.Consumer key={idx}>
+              {(context) => (
+              <div key = {idx} className="box" onClick = {() => context.setDesc(item)}>
+                <h2 key={"heading" + idx}>{item.name}</h2>
+                <h3 key={"owner" + idx}>by {item.owner}</h3>
+                {this.tagshandler(item.tags)}
+              </div>
+              )}
+              </PopContext.Consumer>
+              )
+              }
                                                                       
           </div>
         );
