@@ -97,7 +97,7 @@
 
 .tab{
   border: 1px solid black;
-  background-color: lightblue;
+  background-color: white;
   color: black;
   padding: 1%;
   cursor: pointer;
@@ -144,10 +144,10 @@ bachelor og internship mulighetene*/
 }
 
 .tagslist li {
-  color: white;
+  color: black;
   margin: 2%;
   border-radius: 3%;
-  background-color: teal;
+  background-color: #f1d282;
   grid-area: t;
 
 }
