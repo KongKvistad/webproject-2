@@ -21,10 +21,20 @@ export default class Desc extends React.Component {
             <PopContext.Consumer>
             {(context) => (
                 <div className={context.state ? "popup-open" : "popup-closed"}>
-                <p>Lukk</p>
-                <div className="content">
-                <p onClick = {() => context.setDesc(false)}>{context.state.owner}</p>
-                </div>
+                    <p onClick = {() => context.setDesc(false)}>Lukk</p>
+                    <div className="title">
+                        <h1>{context.state.name}</h1>
+                        <p>{context.state.owner}</p>
+                    </div>
+                    <div className="info">
+                        <p>Start date: {context.state.dato}</p>
+                        <p>POC: {context.state.poc}</p>
+                        <p>Tags: {context.state.tags}</p>
+                    </div>
+                    <div className="content">
+                        <h2>Description</h2>
+                        <p>{context.state.description}</p>
+                    </div>
               
                 </div>
             )}
