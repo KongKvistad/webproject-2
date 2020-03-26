@@ -14,8 +14,16 @@ export default class BoxComp extends React.Component {
         
         
         return (
-          <div className="boxes">
-
+          <div className="mp-container">
+            <div className="search">
+              <form>
+                <label for="search">Search:</label>
+                <input type="text" id="search" name="search" value="Search..."></input>
+              </form>
+              <p>Filter</p>
+              <button>New +</button>
+            </div>
+            <div  className="boxes">
               {this.props.data.map((item, idx) =>
               <PopContext.Consumer key={idx}>
               {(context) => (
@@ -28,7 +36,7 @@ export default class BoxComp extends React.Component {
               </PopContext.Consumer>
               )
               }
-                                                                      
+            </div>                                                         
           </div>
         );
       }
