@@ -14,7 +14,11 @@ export default class Desc extends React.Component {
     componentDidMount(){
         console.log(this)
     }
-    
+    decideUser =(con) =>{
+        return con.user === "s_id" ?
+        <button onClick={() => con.setApp(con.state.name)}>add to list</button> :
+        void(0)
+    }
     
     render() {
         return(
@@ -35,6 +39,7 @@ export default class Desc extends React.Component {
                         <h2>Description</h2>
                         <p>{context.state.description}</p>
                     </div>
+                    {this.decideUser(context)}
               
                 </div>
             )}

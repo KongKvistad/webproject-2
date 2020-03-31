@@ -2,6 +2,7 @@ import React from "react";
 import '../../App.css';
 import BoxComp from "./boxcomp.js"
 import Desc from "./description.js"
+import Priorities from "./priorities.js"
 
 import { PopContext } from "../../popupContext.js"
 
@@ -91,7 +92,8 @@ export default class Canvas extends React.Component {
                 ]
             },
             currPage: "internships",
-            descOpen: false
+            descOpen: false,
+            apply: []
             
         } 
     }
@@ -122,10 +124,17 @@ export default class Canvas extends React.Component {
             <ul>{this.tabshandler()}</ul>
             <PopContext.Provider value={{ 
                 state: this.state.descOpen, 
-                setDesc: (input) => this.setState({descOpen: input})}}>
+                setDesc: (input) => this.setState({descOpen: input}),
                 
+                applicationList: this.state.apply,
+                setApp: (input) => this.state.apply.push(input),
+                
+                user: this.props.userData,
+
+            }}>
                 <Desc data={this.boxhandler()}></Desc>
                 <BoxComp data ={this.boxhandler()}></BoxComp>
+                {this.props.userData === "s_id" ? <Priorities/> : void(0)}
             </PopContext.Provider>
             
         </div>

@@ -31,7 +31,7 @@ export default function Home(props) {
         
         <Switch>
           <Route exact path="/marketplace">
-            <Canvas></Canvas>
+            <Canvas userData={userType}></Canvas>
           </Route>
           <Route exact path="/dashboard">
             <Window userData={user[userType]}></Window>
