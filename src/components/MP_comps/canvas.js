@@ -114,6 +114,8 @@ export default class Canvas extends React.Component {
     boxhandler = () => {
         return this.state.mpData[this.state.currPage].map((item, index) => (item))
     }
+
+    
     
     render() {
 
@@ -127,14 +129,31 @@ export default class Canvas extends React.Component {
                 setDesc: (input) => this.setState({descOpen: input}),
                 
                 applicationList: this.state.apply,
-                setApp: (input) => this.state.apply.push(input),
+                setApp: (input) => this.state.apply.length === 3 ?
+                (this.state.apply.unshift(input),
+                this.state.apply.pop()):
+                this.state.apply.push(input),
                 
                 user: this.props.userData,
 
             }}>
                 <Desc data={this.boxhandler()}></Desc>
-                <BoxComp data ={this.boxhandler()}></BoxComp>
-                {this.props.userData === "s_id" ? <Priorities/> : void(0)}
+                <div className="frame">
+                <div className="search">
+                    <form>
+                        <label for="search">Search:</label>
+                        <input type="text" id="search" name="search" placeholder="Search..."></input>
+                    </form>
+                    <p>Filter</p>
+                    <button>New +</button>
+                </div>
+                    <div className="mp-container">
+                    
+                        <BoxComp user= {this.props.userData} data ={this.boxhandler()}></BoxComp>
+                        {this.props.userData === "s_id" ? <Priorities/> : void(0)}
+                    </div>
+                </div>
+                
             </PopContext.Provider>
             
         </div>
