@@ -1,6 +1,7 @@
 // https://dev.to/iam_timsmith/lets-build-a-search-bar-in-react-120j
 
 import React from 'react';
+import Boxcomp from './boxcomp.js';
 
 export default class Search extends React.Component {
 
@@ -47,7 +48,10 @@ export default class Search extends React.Component {
     render(){
         return(
             <div>
-                <Search/>
+                <form>
+                    <label for="search">Search:</label>
+                    <input type="text" id="search" name="search" onChange={this.handleChange} placeholder="Search..."></input>
+                </form>
             </div>
         )
     }
