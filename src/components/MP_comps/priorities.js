@@ -17,7 +17,7 @@ export default class Priorities extends React.Component {
         return(
             <PopContext.Consumer>
             {(context) => (
-                <div>{context.applicationList}</div>
+                <div className="prioList">{context.applicationList}</div>
             )}
             
             </PopContext.Consumer>

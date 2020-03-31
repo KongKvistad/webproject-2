@@ -111,9 +111,14 @@
   border-bottom: 1px solid white;
 }
 
-.mp-container { /*Hele containeren for marketplace (altså søkebar og bokser)*/
-  margin: -0.5px 2px 0;
+.frame{
   border: 1px solid black;
+  margin: -0.5px 2px 0;
+}
+
+.mp-container { 
+  display: flex;
+  
 }
 
 /*Søkebar + new-button*/
@@ -141,7 +146,23 @@ bachelor og internship mulighetene*/
 .boxes {
   display: grid;
   grid-template-columns: auto auto auto;
+  width: 100%;
 }
+
+.boxes-min{
+  width: 60%;
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.prioList{
+  display: flex;
+  flex-direction: column;
+  background-color: lightcoral;
+  width:40%;
+}
+
+
 
 @media screen and (max-width:800px) { /*box-grid for mindre skjermer*/
   .boxes {
