@@ -18,7 +18,7 @@ export default class BoxComp extends React.Component {
             <div className="search">
               <form>
                 <label for="search">Search:</label>
-                <input type="text" id="search" name="search" value="Search..."></input>
+                <input type="text" id="search" name="search" placeholder="Search..."></input>
               </form>
               <p>Filter</p>
               <button>New +</button>
