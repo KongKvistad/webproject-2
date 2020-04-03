@@ -1,38 +1,37 @@
-import React, {useState, useEffect} from "react"
-import DragDrop from "../dragDropList"
+import React, {useState, useEffect, Component} from "react"
+import DragDrop from "../dragdrop/dragDropList"
 
 
 
 export default function DashBoxes(props) {
     
     const prioList = props.data.priorites
-    const listData = {
-        columns: {
-            "column-1": {
-                id: "column-1",
-                title: "todo",
-                taskIds: ["firstChoice", "secondChoice", "thirdChoice"]
-            }
-        },
     
-        columnOrder: ["column-1"],
-    
-        tasks: {
-            "firstChoice": prioList.firstChoice,
-            "secondChoice": prioList.secondChoice,
-            "thirdChoice": prioList.thirdChoice
-        }
-        };
-
-    
+    const coord = Object.keys(props.data)[1];
     
     return(
+
+        
+
         <div className="box-row">
             <div className="dashbox">
-                <DragDrop items={listData}></DragDrop>
+                <h2>Contract</h2>
+                <div className="lowHalf">
+                <p>You have not recieved a contract yet</p>
+                </div>
             </div>
-            <div className="dashbox"></div>
-            <div className="dashbox"></div>
+            <div className="dashbox">
+            <h2>My Priorities</h2>
+            <DragDrop prioList={prioList}></DragDrop>
+            </div>
+            <div className="dashbox">
+                <h2>{coord}</h2>
+                <ul className="lowHalf">
+                    <li>{props.data[coord].name}</li>
+                    <li>{props.data[coord].room}</li>
+                    <li>{props.data[coord].email}</li>
+                </ul>
+            </div>
         </div>
     )
 }

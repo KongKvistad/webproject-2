@@ -10,17 +10,17 @@ export default class Window extends React.Component {
     this.state ={
         dbData: {
             
-            "Coordinator":
-                {
-                "name": "terje",
-                "room": "256",
-                "email": "terje@ntnu.no"
-                },
             "timeline":{
               
               "internships": 
               {
                 "endDate": "1593560006",
+                "Coordinator":
+                {
+                "name": "terje",
+                "room": "256",
+                "email": "terje@ntnu.no"
+                },
                 "events":
                   [ 
                     {
@@ -36,15 +36,30 @@ export default class Window extends React.Component {
                     }              
                   ],
                   "priorites":
+                  [
                   {
-                  "firstChoice": "12",
-                  "secondChoice": "16",
-                  "thirdChoice": "20",
+                    "id": "1",
+                    "content": "say what again mothefucka"
                   },
+                  {
+                    "id": "3",
+                    "content": "These are not the droids you are looking for"
+                  },
+                  {
+                    "id": "14",
+                    "content": "skrukork for skrullinger"
+                  },
+                  ]
               },
               "projects": 
                 {
                   "endDate": "1590662184",
+                  "Advisor":
+                  {
+                  "name": "terje",
+                  "room": "256",
+                  "email": "terje@ntnu.no"
+                  },
                   "events":
                   [
                     {
@@ -60,11 +75,20 @@ export default class Window extends React.Component {
                     }              
                   ],
                   "priorites":
+                  [
                   {
-                  "firstChoice": "1",
-                  "secondChoice": "4",
-                  "thirdChoice": "156",
+                    "id": "8",
+                    "content": "skrukork for skrullinger"
                   },
+                  {
+                    "id": "12",
+                    "content": "monsterfabrikken"
+                  },
+                  {
+                    "id": "201",
+                    "content": "skrukork for skrullinger"
+                  },
+                  ]
                 
                 }
               }
@@ -114,21 +138,28 @@ export default class Window extends React.Component {
       return  <div className="parentwind">
                 
                   
-                  <Spring
-                    to = {{transform: activePage === "internships" ?  "translateX(0vw)" : "translateX(-100vw)",
-                           left: activePage === "internships" ? "45vw": "26.8vw"}}
-                    >
-                    {({transform, left}) => 
+                  
                     <div className="slidewind">
-                      <animated.ul style={{left}}>{this.tabshandler()}</animated.ul> 
-                      <animated.div style={{transform}} className="catboxes">
-                        <DashBoxes data={this.state.dbData.timeline[activePage]}></DashBoxes>
-                        <DashBoxes data={this.state.dbData.timeline[activePage]}></DashBoxes>
+                    <Spring
+                    to = {{left: activePage === "internships" ? "45vw": "26.8vw"}}
+                    >
+                    {({left}) => 
+                      <animated.ul style={{left}}>{this.tabshandler()}</animated.ul>
+                    }
+                    </Spring>
+                    <Spring
+                    to = {{left: activePage === "internships" ? "0vw": "-100vw"}}
+                    >
+                    {({left}) =>
+                      <animated.div style={{left}} className="catboxes">
+                        <DashBoxes data={this.state.dbData.timeline.internships}></DashBoxes>
+                        <DashBoxes data={this.state.dbData.timeline.projects}></DashBoxes>
                         
                       </animated.div>
-                      
-                    </div>}
-                  </Spring>
+                    }
+                    </Spring>  
+                    </div>
+                  
                 
                 <Timeline timeData={this.state.dbData.timeline[activePage]}></Timeline>
               </div>
