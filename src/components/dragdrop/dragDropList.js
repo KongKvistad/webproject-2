@@ -2,25 +2,31 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import {ItemStyle, ListStyle} from "../dragdrop/dbStyle.js"
+import { PrioContext } from "../../prioContext.js";
 
 
 export default class DragDrop extends Component {
+  static contextType = PrioContext;
+  
   constructor(props) {
     super(props);
     this.state = {
-      items: props.prioList,
-      canSave: false
+      items: [1,2,3],
+    
     };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
 
-  componentDidUpdate(prevProps, prevState){
-    if(prevState.items !== this.state.items){
-      this.setState({canSave: true})
-    }
+  componentDidMount(){
+    const context = this.context;
+    
+    //It will get the data from context, and put it into the state.
+    this.setState({ items: context[this.props.activeCat]});
   }
+
   
   onDragEnd(result) {
+    const context = this.context
     // dropped outside the list
     if (!result.destination) {
       return;
@@ -35,18 +41,24 @@ export default class DragDrop extends Component {
     this.setState({
       items
     });
+    
+    this.props.activeCat === "internships" ? context.reordIntern(items) : context.reordProj(items) 
+    context.setSave(true)
   }
 
   saveHandler = () => {
     alert("replace this with post request");
-    this.setState({canSave: false})
+    this.context.setSave(false)
+    
   }
 
   // Normally you would want to split things out into separate components.
   // But in this example everything is just done in one place for simplicity
   render() {
     return (
-      <div className="dragList">
+     
+      
+      <div className={this.props.page === "marketplace" ? "dragList list-min" : "dragList" }>
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="droppable">
           {(provided, snapshot) => (
@@ -56,9 +68,10 @@ export default class DragDrop extends Component {
               style={ListStyle(snapshot.isDraggingOver)}
             >
               {this.state.items.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
+                <Draggable key={item.id} draggableId={"draggable-"+item.id} index={index}>
                   {(provided, snapshot) => (
                     <div
+                      
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
@@ -67,7 +80,7 @@ export default class DragDrop extends Component {
                         provided.draggableProps.style
                       )}
                     >
-                      {" #" + (index + 1) + " - " + item.content}
+                      {" #" + (index + 1) + " - " + item.name}
                     </div>
                   )}
                 </Draggable>
@@ -77,8 +90,9 @@ export default class DragDrop extends Component {
           )}
         </Droppable>
       </DragDropContext>
-      <button onClick={() => this.saveHandler()} className ={this.state.canSave ? "btn-active" : "btn-inactive"}>Save</button>
+      <button onClick={() => this.saveHandler()} className ={this.context.savePos ? "btn-active" : "btn-inactive"}>Save</button>
       </div>
+    
     );
   }
 }

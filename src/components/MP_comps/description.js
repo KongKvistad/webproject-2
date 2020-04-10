@@ -1,50 +1,59 @@
 import React from "react";
 import '../../App.css';
-import { PopContext } from "../../popupContext.js"
+import {PrioContext} from "../../prioContext.js"
 
 
 export default class Desc extends React.Component {
 
-    // static contextType = PopContext
+   
 
     constructor(props) {
         super(props);
         
     }
     componentDidMount(){
-        console.log(this)
+        
     }
-    decideUser =(con) =>{
-        return con.user === "s_id" ?
-        <button onClick={() => con.setApp(con.state.name)}>add to list</button> :
-        void(0)
+    makeBtn =(con) =>{
+
+        let activeCat = this.props.activeCat
+
+        if(this.props.userType  === "s_id"){
+            return (
+            <button onClick={() => {con.setPrio({"id": con.popData.id, "name": con.popData.name}, activeCat);
+            con.setPop(false)}}>
+            add to list</button>
+            )
+        }
+        
+ 
     }
     
     render() {
         return(
-            <PopContext.Consumer>
+            <PrioContext.Consumer>
             {(context) => (
-                <div className={context.state ? "popup-open" : "popup-closed"}>
-                    <p onClick = {() => context.setDesc(false)}>Lukk</p>
+                <div className={context.popData ? "popup-open" : "popup-closed"}>
+                    <p onClick = {() => context.setPop(false)}>Lukk</p>
                     <div className="title">
-                        <h1>{context.state.name}</h1>
-                        <p>{context.state.owner}</p>
+                        <h1>{context.popData.name}</h1>
+                        <p>{context.popData.owner}</p>
                     </div>
                     <div className="info">
-                        <p>Start date: {context.state.dato}</p>
-                        <p>POC: {context.state.poc}</p>
-                        <p>Tags: {context.state.tags}</p>
+                        <p>Start date: {context.popData.dato}</p>
+                        <p>POC: {context.popData.poc}</p>
+                        <p>Tags: {context.popData.tags}</p>
                     </div>
                     <div className="content">
                         <h2>Description</h2>
-                        <p>{context.state.description}</p>
+                        <p>{context.popData.description}</p>
                     </div>
-                    {this.decideUser(context)}
+                    {this.makeBtn(context)}
               
                 </div>
             )}
                 
-            </PopContext.Consumer>
+            </PrioContext.Consumer>
         )
     }
 

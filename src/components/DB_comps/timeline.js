@@ -53,11 +53,11 @@ export default class Timeline extends React.Component {
         
         <div className="timeline">
                
-                <Node data={currUnix} edgeNode={true}></Node>
+                <Node data={currUnix} edgeNode={"Current date"}></Node>
                 
                 <ul className = "nodes">{this.makeNodes(diffDays, currentTime)}</ul>
                 
-                <Node data={this.props.timeData.endDate} edgeNode={true}></Node>
+                <Node data={this.props.timeData.endDate} edgeNode={"End"}></Node>
             
         </div>
         );

@@ -3,104 +3,30 @@ import '../../App.css';
 import BoxComp from "./boxcomp.js"
 import Desc from "./description.js"
 import Priorities from "./priorities.js"
+import mapCheckBoxes from "../helper_func/mapcheckboxes.js"
+import DragDrop from "../dragdrop/dragDropList.js"
+import getData from "../helper_func/getdata.js"
 
-import { PopContext } from "../../popupContext.js"
+import { PrioContext } from "../../prioContext.js"
+import { getDefaultNormalizer } from "@testing-library/react";
 
 export default class Canvas extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
-            mpData: {
-                "internships":[
-                    {
-                    "name": "Testverdi",
-                    "dato": "22-08-2020",
-                    "owner": "Vinmonopolet",
-                    "tags": ["ux", "css", "innsight"],
-                    "poc": "arne jensen",
-                    "description": [
-                        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, comes from a line in section 1.10.32.",
-                        "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from  by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham."
-                    ]
-                    },
-                    
-                    {
-                    "name":"monsterfabrikken",
-                    "dato": "18-08-2020",
-                    "owner": "max mekker",
-                    "tags": ["ux", "css", "innsight"],
-                    "poc": "arne jensen",
-                    "description": [
-                        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, comes from a line in section 1.10.32.",
-                        "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from  by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham."
-                    ]
-                    },
-
-                    {
-                    "name":"monsterfabrikken",
-                    "dato": "18-08-2020",
-                    "owner": "max mekker",
-                    "tags": ["ux", "css", "innsight"],
-                    "poc": "arne jensen",
-                    "description": [
-                        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, comes from a line in section 1.10.32.",
-                        "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from  by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham."
-                    ]
-                    },
-
-                    {
-                    "name":"monsterfabrikken",
-                    "dato": "18-08-2020",
-                    "owner": "max mekker",
-                    "tags": ["ux", "css", "innsight"],
-                    "poc": "arne jensen",
-                    "description": [
-                        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, comes from a line in section 1.10.32.",
-                        "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from  by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham."
-                    ]
-                    }
-                ],
-
-                "projects":[
-                    {
-                    "name": "skrukork for skrullinger",
-                    "dato": "22-08-2020",
-                    "owner": "vinmonopolet",
-                    "tags": ["ux", "css", "innsight"]
-                    },
-                    
-                    {
-                    "name": "bachelor #1",
-                    "dato": "18-08-2020",
-                    "owner": "max mekker",
-                    "tags": ["ux", "css", "innsight"]             
-                    },
-
-                    {
-                    "name": "skrukork for skrullinger",
-                    "dato": "22-08-2020",
-                    "owner": "vinmonopolet",
-                    "tags": ["ux", "css", "innsight"]
-                    },
-                        
-                    {
-                    "name": "bachelor #1",
-                    "dato": "18-08-2020",
-                    "owner": "max mekker",
-                    "tags": ["ux", "css", "innsight"]             
-                    }
-                ]
-            },
+            mpData: {},
             currPage: "internships",
-            descOpen: false,
-            apply: []
+            checkinternships: true,
+            checkprojects: true,
+            
+            
             
         } 
     }
-
-    // componentDidMount(){
-    //     console.log(this.state.mpData)
-    // }
+    componentWillMount(){
+        this.setState({mpData: getData(this.props.userType)})
+    }
+    
     
     tabshandler = () => {
         return Object.keys(this.state.mpData).map((item, index) => (
@@ -112,51 +38,85 @@ export default class Canvas extends React.Component {
     }
 
     boxhandler = () => {
-        return this.state.mpData[this.state.currPage].map((item, index) => (item))
+        if(this.state.currPage === "students"){
+            return mapCheckBoxes(this.state, "students")
+            
+        } else if (this.state.currPage === "companies"){
+            return mapCheckBoxes(this.state, "companies")
+        }
+         else {
+            return this.state.mpData[this.state.currPage].map((item, index) => (item))
+        }
+        
+    }
+
+    renderPrio = (cats) => {
+        if (this.props.userType === "s_id" ) {
+            return cats.map((item, index) => 
+               this.state.currPage === item ? <DragDrop key={index} data={this.state.mpData[item]} activeCat={item} page={"marketplace"}/> : void(0)
+            )
+        } 
+                
+                        
+    }
+
+    checkHandler = (box) => {
+        if (box.name === "internships"){
+            this.setState({checkinternships: !this.state.checkinternships})
+        } else if (box.name === "projects"){
+            this.setState({checkprojects: !this.state.checkprojects})
+        }
+
     }
 
     
     
     render() {
-
+     
+    const cats = Object.keys(this.state.mpData)
         
       return (
         <div>
             <h1 className="canvas">Marketplace</h1>
             <ul>{this.tabshandler()}</ul>
-            <PopContext.Provider value={{ 
-                state: this.state.descOpen, 
-                setDesc: (input) => this.setState({descOpen: input}),
-                
-                applicationList: this.state.apply,
-                setApp: (input) => this.state.apply.length === 3 ?
-                (this.state.apply.unshift(input),
-                this.state.apply.pop()):
-                this.state.apply.push(input),
-                
-                user: this.props.userData,
-
-            }}>
-                <Desc data={this.boxhandler()}></Desc>
+            
+                <Desc data={this.boxhandler()} userType= {this.props.userType} activeCat={this.state.currPage}></Desc>
                 <div className="frame">
+                <div className = "toolbar">
                 <div className="search">
                     <form>
-                        <label for="search">Search:</label>
+                        <label htmlFor="search">Search:</label>
                         <input type="text" id="search" name="search" placeholder="Search..."></input>
                     </form>
                     <p>Filter</p>
                     <button>New +</button>
                 </div>
+                {this.state.currPage === "students" || this.state.currPage === "companies" ? 
+                    <div className="checkboxes">
+                        <label htmlFor="internships">internships:</label>
+                        <input type="checkbox" id="check-int" name="internships" checked={this.state.checkinternships} onChange ={(event) =>this.checkHandler(event.target)}></input>
+                        <label htmlFor="projects">projects</label>
+                        <input type="checkbox" id="chec-proj" name="projects" checked={this.state.checkprojects} onChange={(event) =>this.checkHandler(event.target)}></input>
+                    </div> :
+                    void(0)
+                }
+                </div>
                     <div className="mp-container">
                     
-                        <BoxComp user= {this.props.userData} data ={this.boxhandler()}></BoxComp>
-                        {this.props.userData === "s_id" ? <Priorities/> : void(0)}
+                        <BoxComp 
+                         activeCat={this.state.currPage}
+                         user= {this.props.userType} 
+                         data ={this.boxhandler()}>
+
+                        </BoxComp>
+                        {this.renderPrio(cats)}
                     </div>
                 </div>
-                
-            </PopContext.Provider>
-            
         </div>
+        
       );
+      
     }
   }
+
+  

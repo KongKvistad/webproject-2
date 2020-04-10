@@ -1,11 +1,10 @@
 import React, {useState, useEffect, Component} from "react"
 import DragDrop from "../dragdrop/dragDropList"
-
+import {PrioContext} from "../../prioContext.js"
 
 
 export default function DashBoxes(props) {
     
-    const prioList = props.data.priorites
     
     const coord = Object.keys(props.data)[1];
     
@@ -22,7 +21,7 @@ export default function DashBoxes(props) {
             </div>
             <div className="dashbox">
             <h2>My Priorities</h2>
-            <DragDrop prioList={prioList}></DragDrop>
+            <DragDrop activeCat = {props.page} ></DragDrop>
             </div>
             <div className="dashbox">
                 <h2>{coord}</h2>

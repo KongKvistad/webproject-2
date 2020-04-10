@@ -15,6 +15,8 @@ import Students from "./components/students.js"
 import parseJwt from "./components/auth.js"
 import { UserContext } from "./UserContext.js"
 
+import {PrioContext} from "./prioContext.js"
+
 
 //
 // Although the page does not ever refresh, notice how

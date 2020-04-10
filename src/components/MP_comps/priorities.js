@@ -1,6 +1,6 @@
 import React from "react";
 import '../../App.css';
-import { PopContext } from "../../popupContext.js"
+import {PrioContext} from "../../prioContext.js"
 
 
 export default class Priorities extends React.Component {
@@ -10,17 +10,22 @@ export default class Priorities extends React.Component {
     }
 
     componentDidMount(){
-        console.log("look!", this);
+       
+    }
+
+
+    conHandler = (data) => {
+        return data.map(x => (x.name))
     }
 
     render(){
         return(
-            <PopContext.Consumer>
+            <PrioContext.Consumer>
             {(context) => (
-                <div className="prioList">{context.applicationList}</div>
+                <div className="prioList">{this.conHandler(context.internPrio)}</div>
             )}
             
-            </PopContext.Consumer>
+            </PrioContext.Consumer>
         )
     }
 

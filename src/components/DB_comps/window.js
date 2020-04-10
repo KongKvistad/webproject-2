@@ -3,8 +3,11 @@ import '../../App.css';
 import {Spring, animated} from 'react-spring/renderprops'
 import Timeline from "./timeline.js";
 import DashBoxes from "./dashboxes.js"
-
+import {PrioContext} from "../../prioContext.js"
 export default class Window extends React.Component {
+
+  static contextType = PrioContext;
+
   constructor(props) {
     super(props);
     this.state ={
@@ -39,15 +42,15 @@ export default class Window extends React.Component {
                   [
                   {
                     "id": "1",
-                    "content": "say what again mothefucka"
+                    "name": "say what again mothefucka"
                   },
                   {
                     "id": "3",
-                    "content": "These are not the droids you are looking for"
+                    "name": "These are not the droids you are looking for"
                   },
                   {
                     "id": "14",
-                    "content": "skrukork for skrullinger"
+                    "name": "skrukork for skrullinger"
                   },
                   ]
               },
@@ -56,9 +59,9 @@ export default class Window extends React.Component {
                   "endDate": "1590662184",
                   "Advisor":
                   {
-                  "name": "terje",
+                  "name": "Carlos",
                   "room": "256",
-                  "email": "terje@ntnu.no"
+                  "email": "carlos@ntnu.no"
                   },
                   "events":
                   [
@@ -78,32 +81,29 @@ export default class Window extends React.Component {
                   [
                   {
                     "id": "8",
-                    "content": "skrukork for skrullinger"
+                    "name": "skrukork for skrullinger"
                   },
                   {
                     "id": "12",
-                    "content": "monsterfabrikken"
+                    "name": "monsterfabrikken"
                   },
                   {
                     "id": "201",
-                    "content": "skrukork for skrullinger"
+                    "name": "skrukork for skrullinger"
                   },
                   ]
                 
                 }
-              }
-                
-        
-                
+              } 
         },
-        currPage: "internships"
+        currPage: "internships",
         
-    } 
+        
+    }
+    
 }  
+  
 
-  componentDidMount(){
-    console.log(this)
-  }
   
   activeLi = (index) => {
     if (this.state.currPage === "internships" && index === 0){
@@ -122,10 +122,10 @@ export default class Window extends React.Component {
       >
         {({transform}) => 
         <animated.li 
-        style={{transform}} 
-        key={index} 
-        onClick={() => this.setState({currPage :item})}
-        className={index === 1 ? "proj-li" : "intern-li"}
+          style={{transform}} 
+          key={index} 
+          onClick={() => this.setState({currPage :item})}
+          className={index === 1 ? "proj-li" : "intern-li"}
         >{item}</animated.li>}
       </Spring>
     ))
@@ -134,34 +134,35 @@ export default class Window extends React.Component {
 
   render() {
     const activePage = this.state.currPage;
+    const cats = Object.keys(this.state.dbData.timeline)
       
       return  <div className="parentwind">
-                
-                  
                   
                     <div className="slidewind">
-                    <Spring
-                    to = {{left: activePage === "internships" ? "45vw": "26.8vw"}}
-                    >
-                    {({left}) => 
-                      <animated.ul style={{left}}>{this.tabshandler()}</animated.ul>
-                    }
-                    </Spring>
-                    <Spring
-                    to = {{left: activePage === "internships" ? "0vw": "-100vw"}}
-                    >
-                    {({left}) =>
-                      <animated.div style={{left}} className="catboxes">
-                        <DashBoxes data={this.state.dbData.timeline.internships}></DashBoxes>
-                        <DashBoxes data={this.state.dbData.timeline.projects}></DashBoxes>
-                        
-                      </animated.div>
-                    }
-                    </Spring>  
+                    
+                      <Spring to = {{left: activePage === "internships" ? "45vw": "26.8vw"}}>
+                      {({left}) => <animated.ul style={{left}}>{this.tabshandler()}</animated.ul>}
+                      </Spring>
+                      
+                      <Spring
+                      to = {{left: activePage === "internships" ? "0vw": "-100vw"}}>
+                      {({left}) =>
+                    
+                        <animated.div style={{left}} className="catboxes">
+                              {cats.map((item, idx) => 
+                                <DashBoxes key={idx} data={this.state.dbData.timeline[item]} page={item}></DashBoxes>   
+                              )}
+                                                     
+                        </animated.div>
+
+                      }
+                      </Spring>  
                     </div>
                   
-                
+               
                 <Timeline timeData={this.state.dbData.timeline[activePage]}></Timeline>
+                
               </div>
     }
   }
+

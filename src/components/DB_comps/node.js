@@ -22,8 +22,9 @@ export default function Node(props) {
         )
     } else {
         return(
-            <div className="tick hasNode" onMouseEnter={() => set({opacity: 1})} onMouseLeave={()=> set({opacity: 0})}>
+            <div className={props.edgeNode === "Current date" ? "tick start" : "tick end"} onMouseEnter={() => set({opacity: 1})} onMouseLeave={()=> set({opacity: 0})}>
                 <animated.div style={styledata} className="nodeCont">
+                    <h3>{props.edgeNode}</h3>
                     <span>{convertToNumb(props.data).toDateString()}</span>
                 </animated.div>
             </div>
