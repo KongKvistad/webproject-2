@@ -25,14 +25,18 @@ export default class Search extends React.Component {
         });
     }
 
+    onSubmit(e){
+        e.preventDefault();
+    }
     handleChange(e) {
+        
         let currentList = [];
         let newList = [];
 
         if (e.target.value !== "") {
             currentList = this.props.items;
             newList = currentList.filter(item=> {
-                const lc = item.toLowerCase();
+                const lc = item.name.toLowerCase();
                 const filter = e.target.value.toLowerCase();
                 return lc.includes(filter);
             });
@@ -47,11 +51,13 @@ export default class Search extends React.Component {
 
     render(){
         return(
-            <div>
-                <form>
+            <div className="search">
+                <form onSubmit={this.onSubmit}>
                     <label for="search">Search:</label>
                     <input type="text" id="search" name="search" onChange={this.handleChange} placeholder="Search..."></input>
                 </form>
+                <p>Filter</p>
+                <button>New +</button>
             </div>
         )
     }

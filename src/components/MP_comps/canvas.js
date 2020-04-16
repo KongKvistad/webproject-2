@@ -6,6 +6,7 @@ import Priorities from "./priorities.js"
 import mapCheckBoxes from "../helper_func/mapcheckboxes.js"
 import DragDrop from "../dragdrop/dragDropList.js"
 import getData from "../helper_func/getdata.js"
+import Search from "../MP_comps/search.js"
 
 import { PrioContext } from "../../prioContext.js"
 import { getDefaultNormalizer } from "@testing-library/react";
@@ -83,14 +84,9 @@ export default class Canvas extends React.Component {
                 <Desc data={this.boxhandler()} userType= {this.props.userType} activeCat={this.state.currPage}></Desc>
                 <div className="frame">
                 <div className = "toolbar">
-                <div className="search">
-                    <form>
-                        <label htmlFor="search">Search:</label>
-                        <input type="text" id="search" name="search" placeholder="Search..."></input>
-                    </form>
-                    <p>Filter</p>
-                    <button>New +</button>
-                </div>
+                
+                <Search items={this.state.mpData[this.state.currPage]} ></Search>
+                
                 {this.state.currPage === "students" || this.state.currPage === "companies" ? 
                     <div className="checkboxes">
                         <label htmlFor="internships">internships:</label>
