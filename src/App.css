@@ -236,6 +236,9 @@ bachelor og internship mulighetene*/
 
 /*Grid og styling for hver enkelt boks*/
 .box {
+  width: 25em;
+  height: 12.5em;
+  box-sizing: border-box;
   display: grid;
   grid-template: 'h h h'
                  'o o o'
