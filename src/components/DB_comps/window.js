@@ -103,7 +103,12 @@ export default class Window extends React.Component {
     
 }  
   
-
+  componentDidMount() {
+  // Simple GET request using fetch
+  fetch('http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/getdashboard.php?studentNo=3')
+      .then(response => response.json())
+      .then(data => this.setState({ dbData: data}));
+  }
   
   activeLi = (index) => {
     if (this.state.currPage === "internships" && index === 0){

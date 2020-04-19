@@ -47,8 +47,12 @@ export default function Home(props) {
           "name": "stuffy"
         },
       ]
-      
-
+    
+    useEffect(()=>{
+      fetch('http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/getdashboard.php?studentNo=3')
+        .then(response => response.json())
+        .then(data => console.log(data));
+    })
     
 
     const [internPrio, setIntern] = useState(internships);
