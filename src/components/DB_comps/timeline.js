@@ -25,15 +25,16 @@ export default class Timeline extends React.Component {
         const oneDay = 24 * 60 * 60 * 1000;
         const events = this.props.timeData.events
         events.forEach(element => {
-            let nodeNum = Math.round(Math.abs(this.convertToNumb(element.date) - currentTime) / oneDay)
+            
+            let nodeNum = Math.round(Math.abs(this.convertToNumb(element.time) - currentTime) / oneDay)
+            
             nodeArr[nodeNum] ? nodeArr[nodeNum] = element : void(0) 
             
         });
-        
-        
+
 
         return nodeArr.map((item, idx) =>
-         item.date ?
+         item.time ?
             <Node key={idx} data={item} edgeNode={false}></Node>
          : <li key={idx} className="tick"></li>
          )

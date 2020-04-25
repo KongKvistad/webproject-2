@@ -37,7 +37,7 @@ export default function App() {
     let lsToken = localStorage.getItem('token')
     let token = window.location.pathname
     let tokenChk = parseJwt(token)
-    let bizToken = localStorage.getItem('biztoken')
+   
     
     //option 1: exists in localstorage
     if(lsToken){
@@ -45,17 +45,11 @@ export default function App() {
       setAuth(data)
     } 
     //option 2: token is supplied in url
-    else if (tokenChk.hasOwnProperty("s_id") || tokenChk.hasOwnProperty("a_id")){
+    else if (tokenChk.hasOwnProperty("studentNo") || tokenChk.hasOwnProperty("employeeNo") || tokenChk.hasOwnProperty("name")){
       localStorage.setItem('token', JSON.stringify(tokenChk));
       setAuth(tokenChk)
     } 
-    //option 3: user is a company and has registered before. 
-    //this token is in that case set in the captcha process.
-
-    else if(bizToken) {
-      setAuth("business")
-   
-    } else{
+    else{
       setAuth("reguser")
     }
     // let data = JSON.parse(localStorage.getItem('token'))

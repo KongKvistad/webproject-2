@@ -11,103 +11,30 @@ export default class Window extends React.Component {
   constructor(props) {
     super(props);
     this.state ={
-        dbData: {
-            
-            "timeline":{
-              
-              "internships": 
-              {
-                "endDate": "1593560006",
-                "Coordinator":
-                {
-                "name": "terje",
-                "room": "256",
-                "email": "terje@ntnu.no"
-                },
-                "events":
-                  [ 
-                    {
-                    "date":"1588721606",
-                    "desc": "testymctest",
-                    "where": "brighthouse"
-                    },
-                  
-                    {
-                    "date":"1592649384",
-                    "desc": "testymctest",
-                    "where": "brighthouse"
-                    }              
-                  ],
-                  "priorites":
-                  [
-                  {
-                    "id": "1",
-                    "name": "say what again mothefucka"
-                  },
-                  {
-                    "id": "3",
-                    "name": "These are not the droids you are looking for"
-                  },
-                  {
-                    "id": "14",
-                    "name": "skrukork for skrullinger"
-                  },
-                  ]
-              },
-              "projects": 
-                {
-                  "endDate": "1590662184",
-                  "Advisor":
-                  {
-                  "name": "Carlos",
-                  "room": "256",
-                  "email": "carlos@ntnu.no"
-                  },
-                  "events":
-                  [
-                    {
-                    "date":"1588721606",
-                    "desc": "testymctest",
-                    "where": "brighthouse"
-                    },
-                  
-                    {
-                    "date":"1592649384",
-                    "desc": "testymctest",
-                    "where": "brighthouse"
-                    }              
-                  ],
-                  "priorites":
-                  [
-                  {
-                    "id": "8",
-                    "name": "skrukork for skrullinger"
-                  },
-                  {
-                    "id": "12",
-                    "name": "monsterfabrikken"
-                  },
-                  {
-                    "id": "201",
-                    "name": "skrukork for skrullinger"
-                  },
-                  ]
-                
-                }
-              } 
-        },
+        dbData: false,
         currPage: "internships",
         
         
     }
     
 }  
-  
+
+  // uses WEB API abortcontroller to cancel fetch request if need be
+  abortController = new AbortController()
+
   componentDidMount() {
   // Simple GET request using fetch
-  fetch('http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/getdashboard.php?studentNo=3')
+  fetch('http://192.168.64.3/php-aws-codepipeline/getdashboard.php?studentNo=3', {signal: this.abortController.signal})
       .then(response => response.json())
-      .then(data => this.setState({ dbData: data}));
+      .then(data => this.setState({ dbData: data}))
+      .catch(err => {
+        console.log("err", err.name);
+       
+      });
+  }
+
+  componentWillUnmount(){
+    this.abortController.abort()
   }
   
   activeLi = (index) => {
@@ -138,6 +65,9 @@ export default class Window extends React.Component {
 
 
   render() {
+    if(!this.state.dbData){
+      return <div>loading...</div>
+    } else {
     const activePage = this.state.currPage;
     const cats = Object.keys(this.state.dbData.timeline)
       
@@ -170,4 +100,4 @@ export default class Window extends React.Component {
               </div>
     }
   }
-
+}

@@ -27,7 +27,7 @@ export default function DashBoxes(props) {
                 <h2>{coord}</h2>
                 <ul className="lowHalf">
                     <li>{props.data[coord].name}</li>
-                    <li>{props.data[coord].room}</li>
+                    <li>{props.data[coord].phoneNo}</li>
                     <li>{props.data[coord].email}</li>
                 </ul>
             </div>

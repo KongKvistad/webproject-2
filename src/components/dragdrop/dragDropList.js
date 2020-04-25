@@ -80,7 +80,7 @@ export default class DragDrop extends Component {
                         provided.draggableProps.style
                       )}
                     >
-                      {" #" + (index + 1) + " - " + item.name}
+                      {" #" + (index + 1) + " - " + item.title}
                     </div>
                   )}
                 </Draggable>
