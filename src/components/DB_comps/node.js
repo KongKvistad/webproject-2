@@ -14,9 +14,9 @@ export default function Node(props) {
         return (
             <li className="tick hasNode"  onMouseEnter={() => set({opacity: 1})} onMouseLeave={()=> set({opacity: 0})}>
                 <animated.div style={styledata}  className ="nodeCont">
-                    <h3>{props.data.desc}</h3>
-                    <span>{convertToNumb(props.data.date).toDateString()}</span>
-                    <span>{props.data.where}</span>
+                    <h3>{props.data.title}</h3>
+                    <span>{convertToNumb(props.data.time).toDateString()}</span>
+                    <span>{props.data.place}</span>
                 </animated.div>
             </li>
         )

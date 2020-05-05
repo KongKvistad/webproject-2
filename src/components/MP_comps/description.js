@@ -18,9 +18,9 @@ export default class Desc extends React.Component {
 
         let activeCat = this.props.activeCat
 
-        if(this.props.userType  === "s_id"){
+        if(this.props.userType  === "studentNo"){
             return (
-            <button onClick={() => {con.setPrio({"id": con.popData.id, "name": con.popData.name}, activeCat);
+            <button onClick={() => {con.setPrio({"id": con.popData.id, "title": con.popData.title}, activeCat);
             con.setPop(false)}}>
             add to list</button>
             )

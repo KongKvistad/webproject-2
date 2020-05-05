@@ -15,17 +15,31 @@ export default class Canvas extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
-            mpData: {},
+            mpData: [1],
             currPage: "internships",
-            checkinternships: true,
-            checkprojects: true,
+            radioVal: "internships"
             
             
             
         } 
     }
-    componentWillMount(){
-        this.setState({mpData: getData(this.props.userType)})
+
+
+    // uses WEB API abortcontroller to cancel fetch request if need be
+    abortController = new AbortController()
+
+    componentDidMount(){
+        fetch(`http://192.168.64.3/php-aws-codepipeline/getmarketplace.php?${this.props.userType}=${this.props.userData}`, {signal: this.abortController.signal})
+        .then(response => response.json())
+        .then(res => this.setState({mpData: res.entries}))
+        .catch(err => {
+            console.log("err", err.name);
+           
+          });
+    }
+
+    componentWillUnmount(){
+        this.abortController.abort()
     }
     
     
@@ -39,20 +53,17 @@ export default class Canvas extends React.Component {
     }
 
     boxhandler = () => {
-        if(this.state.currPage === "students"){
-            return mapCheckBoxes(this.state, "students")
+        if(this.state.currPage === "students" || this.state.currPage === "companies"){
+            return this.state.mpData[this.state.currPage]
             
-        } else if (this.state.currPage === "companies"){
-            return mapCheckBoxes(this.state, "companies")
-        }
-         else {
+        } else {
             return this.state.mpData[this.state.currPage].map((item, index) => (item))
         }
         
     }
 
     renderPrio = (cats) => {
-        if (this.props.userType === "s_id" ) {
+        if (this.props.userType === "studentNo" ) {
             return cats.map((item, index) => 
                this.state.currPage === item ? <DragDrop key={index} data={this.state.mpData[item]} activeCat={item} page={"marketplace"}/> : void(0)
             )
@@ -61,14 +72,7 @@ export default class Canvas extends React.Component {
                         
     }
 
-    checkHandler = (box) => {
-        if (box.name === "internships"){
-            this.setState({checkinternships: !this.state.checkinternships})
-        } else if (box.name === "projects"){
-            this.setState({checkprojects: !this.state.checkprojects})
-        }
-
-    }
+    
 
     
     
@@ -76,8 +80,12 @@ export default class Canvas extends React.Component {
      
     const cats = Object.keys(this.state.mpData)
         
-      return (
-        <div>
+      
+          if(this.state.mpData.length === 1){
+              return <h1>loading...</h1>
+          } else{
+            return(
+                <div>
             <h1 className="canvas">Marketplace</h1>
             <ul>{this.tabshandler()}</ul>
             
@@ -90,9 +98,9 @@ export default class Canvas extends React.Component {
                 {this.state.currPage === "students" || this.state.currPage === "companies" ? 
                     <div className="checkboxes">
                         <label htmlFor="internships">internships:</label>
-                        <input type="checkbox" id="check-int" name="internships" checked={this.state.checkinternships} onChange ={(event) =>this.checkHandler(event.target)}></input>
+                        <input type="radio" id="check-int" name="internships" checked={this.state.radioVal === "internships"}  onChange={(event) =>this.setState({radioVal: event.target.name})}></input>
                         <label htmlFor="projects">projects</label>
-                        <input type="checkbox" id="chec-proj" name="projects" checked={this.state.checkprojects} onChange={(event) =>this.checkHandler(event.target)}></input>
+                        <input type="radio" id="chec-proj" name="projects"  checked={this.state.radioVal === "projects"} onChange={(event) =>this.setState({radioVal: event.target.name})}></input>
                     </div> :
                     void(0)
                 }
@@ -101,6 +109,7 @@ export default class Canvas extends React.Component {
                     
                         <BoxComp 
                          activeCat={this.state.currPage}
+                         radioVal={this.state.radioVal}
                          user= {this.props.userType} 
                          data ={this.boxhandler()}>
 
@@ -109,10 +118,14 @@ export default class Canvas extends React.Component {
                     </div>
                 </div>
         </div>
+            )  
+          }
         
-      );
+        
+      
       
     }
+    
   }
 
   

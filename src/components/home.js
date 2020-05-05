@@ -17,44 +17,30 @@ import Window from "./DB_comps/window.js"
 import injectPrio from "./helper_func/injectprio.js"
 
 export default function Home(props) {
-  let internships=
-  [
-    {
-      "id": "1",
-      "name": "Testverdi"
-    },
-    {
-      "id": "3",
-      "name": "These are not the droids you are looking for"
-    },
-    {
-      "id": "14",
-      "name": "skrukork for skrullinger"
-    },
-  ]
-  let projects = 
-      [
-        {
-          "id": "201",
-          "name": "hallo i luken"
-        },
-        {
-          "id": "8",
-          "name": "bachelor #1"
-        },
-        {
-          "id": "12",
-          "name": "stuffy"
-        },
-      ]
-      
 
+  
+  
+  const [internPrio, setIntern] = useState(false);
+  const [projPrio, setProj] = useState(false);
+  const [savePos, setSave] = useState(false);
+
+
+
+ 
+    useEffect(()=>{
+      fetch(`http://192.168.64.3/php-aws-codepipeline/priorities.php?${userType}=${user[userType]}`)
+        .then(response => response.json())
+        .then(data => {
+          setIntern(data.internships)
+          setProj(data.projects)
+        });
+    },[])
     
 
-    const [internPrio, setIntern] = useState(internships);
-    const [projPrio, setProj] = useState(projects);
+    
+    
     const [PopData, setPop] = useState(false);
-    const [savePos, setSave] = useState(false);
+    
 
     const user = useContext(UserContext)
     
@@ -63,7 +49,10 @@ export default function Home(props) {
     
 
   
-    if(userType === "s_id" || userType === "a_id"){
+    if(userType === "studentNo" || userType === "employeeNo"){
+
+
+      
       return (
         <Router>
         <Redirect to="/dashboard"></Redirect>    
@@ -96,7 +85,7 @@ export default function Home(props) {
             
           }}>
           <Route exact path="/marketplace">
-            <Canvas userType={userType}></Canvas>
+            <Canvas userType={userType} userData={user[userType]}></Canvas>
           </Route>
           <Route exact path="/dashboard">
           
@@ -114,12 +103,16 @@ export default function Home(props) {
         <Redirect to="/marketplace"></Redirect>    
         <Link to="/marketplace">Marketplace</Link>
         <Link to="/marketplace">{user === "business" ? "Log out" : "login"}</Link>
-        
+        <PrioContext.Provider value={{
+          //what data to show in the popup
+          popData: PopData,
+          setPop: (inp) => setPop(inp),
+        }}>
         <Route exact path="/marketplace">
             
             <Canvas></Canvas>
         </Route>
-        
+        </PrioContext.Provider>
         </Router>
       )
     }
