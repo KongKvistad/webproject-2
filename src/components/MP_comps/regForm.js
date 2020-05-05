@@ -2,7 +2,7 @@ import React from "react";
 
 
 
-export default class regForm extends React.Component {
+export default class Regform extends React.Component {
 
 
     constructor(props) {
@@ -11,13 +11,24 @@ export default class regForm extends React.Component {
             companyName: "",
             location: "",
             contactName: "",
-            contactTel:"",
-            contactEmail:""
+            contactTel: "",
+            contactEmail: ""
 
         };
 
         this.handleChange = this.handleChange.bind(this);
         
+    }
+
+    handleChange(event){
+        const target = event.target;
+        const value = target.name; //=== 'isStudent' || 'keepHidden' ? target.checked : target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value,
+            selectedOption: event.target.value
+        });
     }
 
 
@@ -32,7 +43,7 @@ export default class regForm extends React.Component {
                             <br /><input 
                                 name="companyName"
                                 type="text"
-                                value={this.state.companyName}
+                                value={this.state.value}
                                 onChange={this.handleChange}/>
                         </label>
                     </div>
@@ -42,7 +53,7 @@ export default class regForm extends React.Component {
                             <br /><input
                                 name="location"
                                 type="text"
-                                value={this.state.location}
+                                value={this.state.value}
                                 onChange={this.handleChange} />
                         </label>
                     </div>
@@ -52,7 +63,7 @@ export default class regForm extends React.Component {
                             <br /><input
                                 name="contactName"
                                 type="text"
-                                value={this.state.contactName}
+                                value={this.state.value}
                                 onChange={this.handleChange}/>
                         </label>
                     </div>
@@ -65,7 +76,7 @@ export default class regForm extends React.Component {
                             <br /><input
                                 name="contactTel"
                                 type="tel"
-                                value={this.state.contactTel}
+                                value={this.state.value}
                                 onChange={this.handleChange}/>
                         </label>
                         
@@ -74,7 +85,7 @@ export default class regForm extends React.Component {
                             <br /><input
                                 name="contactEmail"
                                 type="tel"
-                                value={this.state.contactEmail}
+                                value={this.state.value}
                                 onChange={this.handleChange}/>
                         </label>
                         
@@ -85,7 +96,10 @@ export default class regForm extends React.Component {
                <div class="formdesc">
                     <label>
                         Description:
-                        <br /><textarea></textarea>
+                        <br /><textarea 
+                        value={this.state.value}
+                        onChange={this.handleChange}>
+                        </textarea>
                     </label>
                 </div>
 
