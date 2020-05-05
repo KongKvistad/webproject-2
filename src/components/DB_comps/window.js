@@ -24,7 +24,7 @@ export default class Window extends React.Component {
 
   componentDidMount() {
   // Simple GET request using fetch
-  fetch(`http://192.168.64.3/php-aws-codepipeline/getdashboard.php?${this.props.userType}=${this.props.userData}`, {signal: this.abortController.signal})
+  fetch(`http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/getdashboard.php?${this.props.userType}=${this.props.userData}`, {signal: this.abortController.signal})
       .then(response => response.json())
       .then(data => this.setState({ dbData: data}))
       .catch(err => {

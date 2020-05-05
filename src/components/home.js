@@ -30,7 +30,7 @@ export default function Home(props) {
     useEffect( () =>{
       const fetchData = async () => {
         const result = await fetch(
-          `http://192.168.64.3/php-aws-codepipeline/priorities.php?${userType}=${user[userType]}`,
+          `http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/priorities.php?${userType}=${user[userType]}`,
         );
           return result
         
