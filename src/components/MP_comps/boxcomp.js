@@ -21,13 +21,13 @@ export default class BoxComp extends React.Component {
       let activeCat = this.props.activeCat
 
       if(activeCat === "students"){
-        return (
-        <div>
-          <h3>{item.studyProgramme}</h3>
-          {this.checkApplied(item)}
-          
-        </div>
-        );
+          return (
+          <div>
+            <h3>{item.studyProgramme}</h3>
+            {this.checkApplied(item)}
+            
+          </div>
+          );
       } else if (activeCat === "companies"){
         return(
         <div>
@@ -46,8 +46,12 @@ export default class BoxComp extends React.Component {
       return this.props.user === "studentNo" ?"boxes-min" : "boxes"
     }
     render() {
-        
-        if(this.props.activeCat === "companies" || this.props.activeCat === "students"){
+        if(this.props.activeCat === "students" && this.props.radioVal === "projects"){
+          return(
+            <BachelorApplications data = {this.props.data}/>
+          );
+        }
+        else if(this.props.activeCat === "companies" || this.props.activeCat === "students"){
           return (
             <div className="boxes">
               {this.props.data.map((item, idx) =>
@@ -79,4 +83,23 @@ export default class BoxComp extends React.Component {
         }
         
       }
+}
+
+const BachelorApplications = (props) => {
+  
+  function hasApplied(entity) {
+    return entity.priorities.length < 3 ? <p>not Applied</p> : <p>Applied</p>
+  }
+  
+  return(
+    <div className="boxes">
+      {props.data.map((item, idx) =>
+        <div key = {idx} className="box">
+        <h2 key={"heading" + idx}> Group #{item.id}</h2>
+        <h3 key={"meta" + idx}> Leader: {item.leaderName}</h3>
+        {hasApplied(item)}
+        </div>
+      )}
+    </div>
+  );
 }

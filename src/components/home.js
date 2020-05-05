@@ -27,13 +27,30 @@ export default function Home(props) {
 
 
  
-    useEffect(()=>{
-      fetch(`http://192.168.64.3/php-aws-codepipeline/priorities.php?${userType}=${user[userType]}`)
-        .then(response => response.json())
-        .then(data => {
-          setIntern(data.internships)
-          setProj(data.projects)
-        });
+    useEffect( () =>{
+      const fetchData = async () => {
+        const result = await fetch(
+          `http://192.168.64.3/php-aws-codepipeline/priorities.php?${userType}=${user[userType]}`,
+        );
+          return result
+        
+      };
+   
+      fetchData().then(res => res.json())
+      .then(json => {
+        
+        setIntern(json.internships)
+        setProj(json.projects)
+      })
+      
+      // fetch(`http://192.168.64.3/php-aws-codepipeline/priorities.php?${userType}=${user[userType]}`)
+      //   .then(response => response.json())
+      //   .then(data => {
+          
+      //     setIntern(data.internships)
+      //     setProj(data.projects)
+        
+      //   });
     },[])
     
 
@@ -89,7 +106,7 @@ export default function Home(props) {
           </Route>
           <Route exact path="/dashboard">
           
-            <Window userData={user[userType]}></Window>
+            <Window userType={userType} userData={user[userType]} ></Window>
            
           </Route>
           </PrioContext.Provider>
@@ -117,6 +134,17 @@ export default function Home(props) {
       )
     }
 
+    // else if (userType === "employeeNo"){
+    //   return (
+    //     <Router>
+    //     <Redirect to="/login"></Redirect>
+    //         <div>
+    //           <p>login</p>
+    //           <input></input>
+    //         </div>
+    //     </Router>
+    //   );
+    // } 
     
 }
 

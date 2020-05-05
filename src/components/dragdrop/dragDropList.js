@@ -11,18 +11,15 @@ export default class DragDrop extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [1,2,3],
+      items: false,
     
     };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
 
-  componentDidMount(){
-    const context = this.context;
-    
-    //It will get the data from context, and put it into the state.
-    this.setState({ items: context[this.props.activeCat]});
-  }
+  
+
+
 
   
   onDragEnd(result) {
@@ -33,14 +30,12 @@ export default class DragDrop extends Component {
     }
 
     const items = reorder(
-      this.state.items,
+      context[this.props.activeCat],
       result.source.index,
       result.destination.index
     );
 
-    this.setState({
-      items
-    });
+   
     
     this.props.activeCat === "internships" ? context.reordIntern(items) : context.reordProj(items) 
     context.setSave(true)
@@ -55,45 +50,58 @@ export default class DragDrop extends Component {
   // Normally you would want to split things out into separate components.
   // But in this example everything is just done in one place for simplicity
   render() {
-    return (
-     
+    const context = this.context
+   
+    //!this.context.projects && this.props.activeCat === "projects"
+    if(!context.projects){
+      return <p>loading</p>
+    }
+    else if (typeof(context.projects) === "string" && this.props.activeCat === "projects"){
+      return <p>{context.projects}</p>
+    }
+    else {
       
-      <div className={this.props.page === "marketplace" ? "dragList list-min" : "dragList" }>
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        <Droppable droppableId="droppable">
-          {(provided, snapshot) => (
-            <div
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-              style={ListStyle(snapshot.isDraggingOver)}
-            >
-              {this.state.items.map((item, index) => (
-                <Draggable key={item.id} draggableId={"draggable-"+item.id} index={index}>
-                  {(provided, snapshot) => (
-                    <div
-                      
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      style={ItemStyle(
-                        snapshot.isDragging,
-                        provided.draggableProps.style
-                      )}
-                    >
-                      {" #" + (index + 1) + " - " + item.title}
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
-      <button onClick={() => this.saveHandler()} className ={this.context.savePos ? "btn-active" : "btn-inactive"}>Save</button>
-      </div>
+      return (
+        
+        
+        <div className={this.props.page === "marketplace" ? "dragList list-min" : "dragList" }>
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          <Droppable droppableId="droppable">
+            {(provided, snapshot) => (
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                style={ListStyle(snapshot.isDraggingOver)}
+              >
+                {context[this.props.activeCat].map((item, index) => (
+                  <Draggable key={item.id} draggableId={"draggable-"+item.id} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        style={ItemStyle(
+                          snapshot.isDragging,
+                          provided.draggableProps.style
+                        )}
+                      >
+                        {" #" + (index + 1) + " - " + item.title}
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+        <button onClick={() => this.saveHandler()} className ={this.context.savePos ? "btn-active" : "btn-inactive"}>Save</button>
+        </div>
+      
+      );
+    }
     
-    );
   }
 }
 

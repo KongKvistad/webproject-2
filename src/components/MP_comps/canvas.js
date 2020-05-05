@@ -16,6 +16,7 @@ export default class Canvas extends React.Component {
         super(props);
         this.state ={
             mpData: [1],
+            admProjList: false,
             currPage: "internships",
             radioVal: "internships"
             
@@ -31,16 +32,23 @@ export default class Canvas extends React.Component {
     componentDidMount(){
         fetch(`http://192.168.64.3/php-aws-codepipeline/getmarketplace.php?${this.props.userType}=${this.props.userData}`, {signal: this.abortController.signal})
         .then(response => response.json())
-        .then(res => this.setState({mpData: res.entries}))
+        .then(res => this.setState({
+            mpData: res.entries,
+            admProjList:res.studProjPrio}))
         .catch(err => {
             console.log("err", err.name);
            
           });
     }
 
+
+    
+
     componentWillUnmount(){
         this.abortController.abort()
     }
+
+    
     
     
     tabshandler = () => {
@@ -53,7 +61,12 @@ export default class Canvas extends React.Component {
     }
 
     boxhandler = () => {
-        if(this.state.currPage === "students" || this.state.currPage === "companies"){
+        //special handling for projects
+        if(this.state.currPage === "students" && this.state.radioVal === "projects"){
+            return this.state.admProjList;
+        }
+        
+        else if(this.state.currPage === "students" || this.state.currPage === "companies"){
             return this.state.mpData[this.state.currPage]
             
         } else {
@@ -67,7 +80,9 @@ export default class Canvas extends React.Component {
             return cats.map((item, index) => 
                this.state.currPage === item ? <DragDrop key={index} data={this.state.mpData[item]} activeCat={item} page={"marketplace"}/> : void(0)
             )
-        } 
+        } else {
+            return void(0)
+        }
                 
                         
     }

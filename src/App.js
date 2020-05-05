@@ -53,7 +53,7 @@ export default function App() {
       setAuth("reguser")
     }
     // let data = JSON.parse(localStorage.getItem('token'))
-    // console.log(data)
+     
   
   },[]);
   if(auth){

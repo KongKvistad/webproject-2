@@ -24,7 +24,7 @@ export default class Window extends React.Component {
 
   componentDidMount() {
   // Simple GET request using fetch
-  fetch('http://192.168.64.3/php-aws-codepipeline/getdashboard.php?studentNo=3', {signal: this.abortController.signal})
+  fetch(`http://192.168.64.3/php-aws-codepipeline/getdashboard.php?${this.props.userType}=${this.props.userData}`, {signal: this.abortController.signal})
       .then(response => response.json())
       .then(data => this.setState({ dbData: data}))
       .catch(err => {
@@ -70,6 +70,7 @@ export default class Window extends React.Component {
     } else {
     const activePage = this.state.currPage;
     const cats = Object.keys(this.state.dbData.timeline)
+  
       
       return  <div className="parentwind">
                   
@@ -85,7 +86,7 @@ export default class Window extends React.Component {
                     
                         <animated.div style={{left}} className="catboxes">
                               {cats.map((item, idx) => 
-                                <DashBoxes key={idx} data={this.state.dbData.timeline[item]} page={item}></DashBoxes>   
+                                <DashBoxes userType={this.props.userType} key={idx} data={this.state.dbData.timeline[item]} page={item}></DashBoxes>   
                               )}
                                                      
                         </animated.div>
