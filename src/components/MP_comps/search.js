@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Boxcomp from './boxcomp.js';
+import Form from './form.js';
 
 export default class Search extends React.Component {
 
@@ -9,7 +10,8 @@ export default class Search extends React.Component {
         super (props);
 
         this.state = {
-            filtered: []
+            filtered: [],
+            isFormOpen: false
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -49,6 +51,10 @@ export default class Search extends React.Component {
         });
     }
 
+    handleForm(){
+        this.setState({isFormOpen: !this.state.isFormOpen});
+    } 
+
     render(){
         return(
             <div className="search">
@@ -57,7 +63,10 @@ export default class Search extends React.Component {
                     <input type="text" id="search" name="search" onChange={this.handleChange} placeholder="Search..."></input>
                 </form>
                 <p>Filter</p>
-                <button>New +</button>
+                <button onClick={()=>this.handleForm()}>New +</button>
+                <div className={this.state.isFormOpen ? "form-visible" : "form-invisible"}>
+                <Form></Form>
+                </div>
             </div>
         )
     }

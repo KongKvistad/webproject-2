@@ -326,3 +326,98 @@ h1, h2, h3 {
  
   display: none;
 }
+
+
+
+
+/*Form for adding new internships/projects*/
+
+.form-visible {
+  width: 70%;
+  height: auto;
+  padding: 2%;
+  background-color: #f4f7f9;
+  border: 1px solid gray;
+  position: absolute;
+  top: 20vh;
+  left: 10%;
+  box-shadow: 4px 4px 14px 0px rgba(0.2,0.2,0.2,0.5);
+  overflow-y: auto; /*Lar vinduet scrolle om det er mye tekst*/
+  z-index: 5;
+}
+
+
+
+
+
+.form-visible .forminfo {
+  display: grid;
+  grid-template-areas: 't t t' 
+                       'n a r'
+                       'n a r'
+                       'n a r';
+  margin-bottom: 50px;
+}
+
+.form-visible input {
+  border: 1px solid black;
+  border-radius: 1px;
+}
+
+.form-visible .formtitle {
+  width: 100%;
+  grid-area: t;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+
+.form-visible input[type="text"] {
+
+  width: 75%;
+  padding: 5px;
+  margin: 5px;
+  
+  
+}
+.form-visible .formleft {
+  display: grid;
+  grid-area: n;
+}
+.form-visible .formmiddle {
+  display: grid;
+  grid-area: a;
+}
+
+.form-visible .formright {
+  display: grid;
+  grid-area: r;
+  
+}
+
+.form-visible .formright select{
+  margin-left: 15px;
+}
+
+.form-visible textarea {
+  width: 75%;
+  height: 150px;
+  padding: 1%;
+}
+
+.form-visible .formdesc label {
+  align-self: center;
+}
+
+#formsubmit {
+  padding: 10px 20px;
+  float: right;
+  background-color: #f1d282;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 3px rgb(119, 119, 119);
+  cursor: pointer;
+}
+.form-invisible {
+  display: none;
+}
