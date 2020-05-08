@@ -88,7 +88,7 @@ export default class BoxComp extends React.Component {
 const BachelorApplications = (props) => {
   
   function hasApplied(entity) {
-    return entity.priorities.length < 3 ? <p>not Applied</p> : <p>Applied</p>
+    return entity.priorities.filter(x => x.id !== null) < 3 ? <p>not Applied</p> : <p>Applied</p>
   }
   
   return(
