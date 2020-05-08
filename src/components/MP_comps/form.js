@@ -41,7 +41,7 @@ export default class Form extends React.Component {
         this.setState({
             [name]: value,
             selectedOption: event.target.value
-        })
+        });
     }
 
     
@@ -59,7 +59,7 @@ export default class Form extends React.Component {
                             <br /><input 
                                 name="title"
                                 type="text"
-                                value={this.state.title}
+                                value={this.state.value}
                                 onChange={this.handleChange}/>
                         </label>
                     </div>
@@ -69,7 +69,7 @@ export default class Form extends React.Component {
                             <br /><input
                                 name="companyName"
                                 type="text"
-                                value={this.state.companyName}
+                                value={this.state.value}
                                 onChange={this.handleChange} />
                         </label>
                     </div>
@@ -79,7 +79,7 @@ export default class Form extends React.Component {
                             <br /><input
                                 name="author"
                                 type="text"
-                                value={this.state.author}
+                                value={this.state.value}
                                 onChange={this.handleChange}/>
                         </label>
                     </div>
@@ -152,11 +152,11 @@ export default class Form extends React.Component {
                <div class="formdesc">
                     <label>
                         Description:
-                        <br /><textarea></textarea>
+                        <br /><textarea value={this.state.value} onChange={this.handleChange}></textarea>
                     </label>
                 </div>
 
-                <input type="submit" id="formsubmit" value="Submit" />
+                <input type="submit" id="formsubmit" value="Submit" name="submitform" />
             </form>
         )
 
