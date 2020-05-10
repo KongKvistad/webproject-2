@@ -2,7 +2,7 @@ import React, {useState, useEffect, Component} from "react"
 import DragDrop from "../dragdrop/dragDropList"
 import {PrioContext} from "../../prioContext.js"
 import { useContext } from "react"
-
+import GroupOrPoc from "./groupOrPoc.js"
 
 export default function DashBoxes(props) {
     
@@ -35,125 +35,33 @@ export default function DashBoxes(props) {
     } else {
         return (
             <div className="box-row">
-                <div className="dashbox"></div>
-                <div className="dashbox"></div>
-                <div className="dashbox"></div>
-            </div>
-        )
-    }
-    
-}
-
-
-const GroupOrPoc = (props) => {
-    
-
-    
-    
-    const [group, setGroup] = useState([]);
-    const [newMemb, setMemb] = useState([]);
-    
-    useEffect(()=> {
-        if(props.data.groups){
-            setGroup({
-                leader : props.data.groups[0],
-                member1 : props.data.groups[1],
-                member2 : props.data.groups[2]
-            })
-        }
-    },[])
-    
-    
-    
-    
-    
-    
-    if(props.type === "projects"){
-        return (
-            <div className="dashbox">
-                        
-                {group.leader ? <h2>My Group</h2> : <h2>make goup</h2>}
-                <div className="lowHalf">
-                {mapMembers(group)}
+                <div className="dashbox">
+                    <h2>Add student</h2>
+                        <ul className="lowHalf">
+                            
+                        </ul>
+                    
                 </div>
-            </div>
-        )
-    } else{
-        return(
-            <div className="dashbox">
-                        
-                <h2>POC</h2>
-                <div className="lowHalf">
+                <div className="dashbox">
+                    <h2>Assign mentor</h2>
+                        <ul className="lowHalf">
+                            
+                        </ul>
+                    
+                </div>
                 
+                <div className="dashbox">
+                    <h2>Sort applications</h2>
+                        <ul className="lowHalf">
+                            
+                        </ul>
+                    
                 </div>
             </div>
         )
     }
     
-    
-
-    function updateField(e, stateType) {
-        setGroup({
-          ...group,
-          [stateType]: {name: e.target.value}
-        });
-      };
-
-    function addNew(e, stateType){
-        setMemb({
-            ...newMemb,
-            [stateType]: {name: e.target.value}
-          });
-    }
-
-
-    function mapMembers(group){
-        
-        const cats = Object.keys(group)
-        
-        
-        return(
-                cats.map((item) => <div>
-                {
-                    group[item]
-                     ?
-                     <input value={group[item].name} onChange={e => updateField(e, [item])}/>
-                     :
-                     <input placeholder={"add@ntnu.no"} onChange={e => addNew(e, [item])}/>
-                         
-                     
-                }
-                <button onClick={(e) =>console.log(e.target)}>add</button>
-                </div>
-                )
-                // <div>
-                //    {group.member2
-                //     ?
-                //     <input value={group.member2.name} onChange={e => updateField(e, "member2")}/>
-                //     :
-                //     <div>
-                //     <input placeholder={"add@ntnu.no"} onChange={e => addNew(e, "member2")}/>
-                //         <button onClick={(e) =>console.log(e.target)}>add</button>
-                //     </div>
-                //    }
-                    
-                   
-                    
-                     
-                        
-                    
-                   
-                //     {/* <button onClick={(e) =>console.log(e.target)}>remove</button> */}
-                // </div>
-                )
-            
-    
-        
-
-    
-
-        
-        
-        
-    }
 }
+
+
+
