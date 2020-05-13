@@ -15,6 +15,10 @@ import { UserContext } from "../UserContext.js";
 import Canvas from "./MP_comps/canvas.js";
 import Window from "./DB_comps/window.js"
 import injectPrio from "./helper_func/injectprio.js"
+import About from "../about.js"
+import Login from "./login.js"
+import Signup from "./signup.js"
+import RegForm from "./MP_comps/regForm.js"
 
 export default function Home(props) {
 
@@ -24,7 +28,14 @@ export default function Home(props) {
   const [projPrio, setProj] = useState(false);
   const [savePos, setSave] = useState(false);
 
+  const [PopData, setPop] = useState(false);
+    
 
+    const userData = useContext(UserContext)
+    const user = userData.value
+    const setUser = userData.setVal
+    
+    const userType = user.hasOwnProperty("contactName") ? "name" : user.hasOwnProperty("employeeNo") ? "employeeNo" : user.hasOwnProperty("studentNo") ? "studentNo" : "reguser"
 
  
     useEffect( () =>{
@@ -43,6 +54,8 @@ export default function Home(props) {
         setIntern(json.internships)
         setProj(json.projects)
       })
+
+      console.log(userType)
       
       // fetch(`http://192.168.64.3/php-aws-codepipeline/priorities.php?${userType}=${user[userType]}`)
       //   .then(response => response.json())
@@ -57,12 +70,7 @@ export default function Home(props) {
 
     
     
-    const [PopData, setPop] = useState(false);
     
-
-    const user = useContext(UserContext)
-    
-    const userType = Object.keys(user)[0]
     
     
 
@@ -76,8 +84,10 @@ export default function Home(props) {
         <Redirect to="/dashboard"></Redirect>    
         
         <ul className="navbar">
+        <Link to="/about">Log Out</Link>
         <li><Link to="/marketplace">Marketplace</Link></li>
         <li><Link to="/dashboard">Dashboard</Link></li>
+        
         
         </ul>
         
@@ -112,15 +122,22 @@ export default function Home(props) {
           </Route>
           </PrioContext.Provider>
         </Switch>
-        
+        <Route exact path="/about">
+          <About loggedOut = {true}></About>
+        </Route>
         </Router>
         );
-    } else {
+        // if usertype is company
+    } else if (userType === "name"){
       return (
+        
         <Router>
-        <Redirect to="/marketplace"></Redirect>    
+        <Redirect to="/marketplace"></Redirect> 
+        <ul className="navbar">  
+       
         <Link to="/marketplace">Marketplace</Link>
-        <Link to="/marketplace">{user === "business" ? "Log out" : "login"}</Link>
+        <Link to="/about">Log Out</Link>
+        </ul>
         <PrioContext.Provider value={{
           //what data to show in the popup
           popData: PopData,
@@ -130,22 +147,58 @@ export default function Home(props) {
             
             <Canvas></Canvas>
         </Route>
+
         </PrioContext.Provider>
+
+        <Route exact path="/about">
+          <About loggedOut = {true}></About>
+        </Route>
+        
+        </Router>
+      )
+
+    } else {
+      return (
+
+        //otherwise the user isreguser 
+        <Router>
+        <Redirect to="/about"></Redirect> 
+        <ul className="navbar">   
+     
+        <Link to="/marketplace">Marketplace</Link>
+        <Link to="/login">Log In</Link>
+        <Link to="/signup">Sign Up</Link>
+      
+        </ul>
+        <PrioContext.Provider value={{
+          //what data to show in the popup
+          popData: PopData,
+          setPop: (inp) => setPop(inp),
+        }}>
+        <Route exact path="/marketplace">
+            
+            <Canvas></Canvas>
+        </Route>
+
+        </PrioContext.Provider>
+
+        <Route exact path="/about">
+          <About user = {user}></About>
+        </Route>
+        <Route exact path="/login">
+            <Login loggedOut={false}></Login>
+        </Route>
+        <Route exact path="/signup">
+            <Signup></Signup>
+        </Route>
+        
         </Router>
       )
     }
 
-    // else if (userType === "employeeNo"){
-    //   return (
-    //     <Router>
-    //     <Redirect to="/login"></Redirect>
-    //         <div>
-    //           <p>login</p>
-    //           <input></input>
-    //         </div>
-    //     </Router>
-    //   );
-    // } 
+    
     
 }
+
+
 

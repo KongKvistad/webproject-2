@@ -5,7 +5,9 @@ import { UserContext } from "../../UserContext";
 const GroupOrPoc = (props) => {
     
 
-    const user = useContext(UserContext)
+    const userData = useContext(UserContext)
+    const user = userData.value
+    const setUser = userData.setVal
     
     const [group, setGroup] = useState([]);
     const [newMemb, setMemb] = useState([]);
@@ -57,7 +59,7 @@ const GroupOrPoc = (props) => {
         .then(json => {
             alert(json)
             if(json === true){
-                window.location.reload(true);
+                window.location.href = window.location.origin;
             }
                 
         })

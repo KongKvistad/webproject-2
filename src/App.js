@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 
 import Home from "./components/home.js"
-import Students from "./components/students.js"
+
 import parseJwt from "./components/auth.js"
 import { UserContext } from "./UserContext.js"
 
@@ -42,10 +42,11 @@ export default function App() {
     //option 1: exists in localstorage
     if(lsToken){
       let data = JSON.parse(lsToken) 
+      console.log("hit")
       setAuth(data)
     } 
     //option 2: token is supplied in url
-    else if (tokenChk.hasOwnProperty("studentNo") || tokenChk.hasOwnProperty("employeeNo") || tokenChk.hasOwnProperty("name")){
+    else if (tokenChk.hasOwnProperty("studentNo") || tokenChk.hasOwnProperty("employeeNo") || tokenChk.hasOwnProperty("contactName")){
       localStorage.setItem('token', JSON.stringify(tokenChk));
       setAuth(tokenChk)
     } 
@@ -58,7 +59,9 @@ export default function App() {
   },[]);
   if(auth){
     return (
-      <UserContext.Provider value={auth}>
+      <UserContext.Provider value={{
+        value: auth,
+        setVal: (inp) => setAuth(inp)}}>
       <Router>
       <Route path= {["/","/home","/:token"]}>
         <Home></Home>
