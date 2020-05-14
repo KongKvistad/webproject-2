@@ -17,7 +17,7 @@ export default function About(props){
         
         
             <img src={Logo} className="header-logo"  alt="NTNU - Norwegian University of Science and Technology"/>
-            <img className="header-logo-height" src={LogoH} alt="NTNU - Norwegian University of Science and Technology"></img>
+            <img className="header-logo-height" src={LogoH} alt="NTNU - Norwegian University of Science and Technology"/>
             <h1>about</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
                     magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
