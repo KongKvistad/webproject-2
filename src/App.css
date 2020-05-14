@@ -227,12 +227,7 @@ bachelor og internship mulighetene*/
 
 
 
-@media screen and (max-width:800px) { /*box-grid for mindre skjermer*/
-  .boxes {
-    display: grid;
-    grid-template-columns: auto auto;
-  }
-}
+
 
 /*Grid og styling for hver enkelt boks*/
 .box {
@@ -421,4 +416,44 @@ h1, h2, h3 {
 }
 .form-invisible {
   display: none;
+}
+
+/*___________ABOUT PAGE____________*/
+
+.about-container {
+  margin-top: 50px;
+  padding: 0 10%;
+}
+
+.about-container h1, h2, h3 {
+  margin: 25px 0;
+  text-transform: uppercase;
+}
+.header-logo {
+  height: 30px;
+}
+
+.header-logo-height {
+  width: 150px;
+  display: none;
+}
+
+
+
+
+/*________MEDIA SCREEN MAX 800PX________*/
+@media screen and (max-width:800px) { /*box-grid for mindre skjermer*/
+  /*Change the grid on the boxes on the marketplace*/
+  .boxes {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+
+  /*Switch logo shown on the about-page*/
+  .header-logo {
+    display: none;
+  }
+  .header-logo-height {
+      display: block;
+  }
 }

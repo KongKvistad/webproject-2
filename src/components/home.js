@@ -48,23 +48,23 @@ export default function Home(props) {
         
       };
    
-      fetchData().then(res => res.json())
+      /* fetchData().then(res => res.json())
       .then(json => {
         
         setIntern(json.internships)
         setProj(json.projects)
-      })
+      }) */
 
       console.log(userType)
       
-      // fetch(`http://192.168.64.3/php-aws-codepipeline/priorities.php?${userType}=${user[userType]}`)
-      //   .then(response => response.json())
-      //   .then(data => {
+      fetch(`http://192.168.64.3/php-aws-codepipeline/priorities.php?${userType}=${user[userType]}`)
+        .then(response => response.json())
+        .then(data => {
           
-      //     setIntern(data.internships)
-      //     setProj(data.projects)
+          setIntern(data.internships)
+          setProj(data.projects)
         
-      //   });
+        });
     },[])
     
 
