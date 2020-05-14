@@ -1,6 +1,7 @@
 import React, {Component, useState} from "react"
 import parseJwt from "./auth.js"
 import { useHistory } from "react-router-dom";
+import Logo from "../ntnu-logo.png";
 export default function Login(props){
 
 
@@ -40,18 +41,20 @@ export default function Login(props){
     }
 
     return (
-   
+        <div className = "regForm">
+        <img src={Logo} className="header-logo"  alt="NTNU - Norwegian University of Science and Technology"/>
+        <h1>Login</h1>
         <form>
             <label>
-                <span>I'm an admin</span>
+                <span>I'm an admin:</span>
                 <input type="checkbox" onChange={() => setAdmin(!isAdmin)}></input>
-            </label>
+            </label><br />
             <label className="username">
-                <span>Username</span>
+                <span>Username:</span>
                 <input type="text" value={email} onChange={(e) => handleUser(e, setEmail)}></input>
             </label>
             <label className="password">
-                <span>password</span>
+                <span>Password:</span>
                 <input type="password" value={pass} onChange={(e) => handleUser(e, setPass)}></input>
             </label>
             <label>
@@ -59,7 +62,7 @@ export default function Login(props){
             </label>
             
         </form>
-    
+        </div>
     )
 }
 
