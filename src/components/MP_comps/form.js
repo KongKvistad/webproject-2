@@ -18,6 +18,7 @@ export default class Form extends React.Component {
             endDate:"",
             noofstudents: "1",
             keephidden: false,
+            tags: "",
             postType: "",
             description: "",
 
@@ -27,6 +28,12 @@ export default class Form extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         
         
+    }
+
+    componentDidMount(){
+        let con = this.context.value
+
+        this.setState({companyName: con.contactName ? con.name : ""})
     }
 
 
@@ -54,20 +61,23 @@ export default class Form extends React.Component {
         
         const userData = user.hasOwnProperty("contactName") ? {"name": user.name} : user.hasOwnProperty("employeeNo") ? {"employeeNo": user.employeeNo} : user.hasOwnProperty("studentNo") ? {"studentNo" : user.studentNo} : "reguser"
 
-        const key = Object.keys(userData)
+       
 
-        data[key] = userData[key]
+        data.user = userData
         
-        
-        console.log(data)
+      
 
 
-
-        // fetchData(data)
-        // .then(res => res.json())
-        // .then(result => {
-        //     console.log(result)
-        // })
+        fetchData(data)
+        .then(res => res.json())
+        .then(result => {
+            
+            if(typeof(result) === "string"){
+                alert(result)
+            } else {
+                window.location.href=window.location.origin
+            }
+        })
     }
 
 
@@ -173,13 +183,21 @@ export default class Form extends React.Component {
                                     onChange={this.handleChange} />
                             Keep hidden
                         </label>
+                        <label>
+                                <input
+                                    name="tags"
+                                    type="input"
+                                    checked={this.state.tags}
+                                    onChange={this.handleChange} />
+                            Tags
+                        </label>
                     </div>
 
                 </div>
                <div class="formdesc">
                     <label>
                         Description:
-                        <br /><textarea name="desc" value={this.state.desc} onChange={this.handleChange}></textarea>
+                        <br /><textarea name="description" value={this.state.description} onChange={this.handleChange}></textarea>
                     </label>
                 </div>
 
@@ -195,18 +213,18 @@ export default class Form extends React.Component {
 }
 
 
-const fetchData = async (userData, data) => {
+const fetchData = async (data) => {
     
    
 
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({  })
+        body: JSON.stringify({data})
     };
     
     const result = await fetch(
-      `http://192.168.64.3/php-aws-codepipeline/newPost.php?`, requestOptions,
+      `http://192.168.64.3/php-aws-codepipeline/newPost.php`, requestOptions,
     );
     
     return result

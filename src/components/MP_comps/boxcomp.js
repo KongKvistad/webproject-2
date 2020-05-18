@@ -46,12 +46,31 @@ export default class BoxComp extends React.Component {
       return this.props.user === "studentNo" ?"boxes-min" : "boxes"
     }
     render() {
-        if(this.props.activeCat === "students" && this.props.radioVal === "projects"){
-          return(
-            <BachelorApplications data = {this.props.data}/>
-          );
+        if(this.props.activeCat === "students" ){
+          if(this.props.radioVal === "projects"){
+            return(
+              <BachelorApplications data = {this.props.data}/>
+            );
+          } else {
+            return (
+              <div className={this.studView()}>
+                {this.props.data.map((item, idx) =>
+                
+                  
+                  <div key = {idx} className="box">
+                    <h2 key={"heading" + idx}>{item.name}</h2>
+                    {this.tagshandler(item)}
+                  </div>
+                  
+                
+                )}
+              </div>
+            );
+          }
         }
-        else if(this.props.activeCat === "companies" || this.props.activeCat === "students"){
+          
+        
+        else if(this.props.activeCat === "companies"){
           return (
             <div className="boxes">
               {this.props.data.map((item, idx) =>
@@ -62,6 +81,22 @@ export default class BoxComp extends React.Component {
               )}
             </div>
           );
+        } else if(this.props.activeCat === "pitched"){
+          return (
+            <div className={this.studView()}>
+              {this.props.data[this.props.radioVal].map((item, idx) =>
+              <PrioContext.Consumer key={idx}>
+                {(context) => (
+                <div key = {idx} className="box" onClick = {() => context.setPop(item)}>
+                  <h2 key={"heading" + idx}>{item.title}</h2>
+                  <h3 key={"owner" + idx}>by {item.author}</h3>
+                  {this.tagshandler(item)}
+                </div>
+                )}
+              </PrioContext.Consumer>
+              )}
+            </div>
+        );
         } else {
             return (
               <div className={this.studView()}>

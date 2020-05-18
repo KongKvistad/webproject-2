@@ -67,7 +67,7 @@ export default class Canvas extends React.Component {
             return this.state.admProjList;
         }
         
-        else if(this.state.currPage === "students" || this.state.currPage === "companies"){
+        else if(this.state.currPage === "students" || this.state.currPage === "companies" || this.state.currPage === "pitched"){
             return this.state.mpData[this.state.currPage]
             
         } else {
@@ -105,13 +105,13 @@ export default class Canvas extends React.Component {
             <h1 className="canvas">Marketplace</h1>
             <ul>{this.tabshandler()}</ul>
             
-                <Desc data={this.boxhandler()} userType= {this.props.userType} activeCat={this.state.currPage}></Desc>
+                <Desc data={this.boxhandler()} userType= {this.props.userType} activeCat={this.state.currPage} radioVal = {this.state.radioVal}></Desc>
                 <div className="frame">
                 <div className = "toolbar">
                 
                 <Search items={this.state.mpData[this.state.currPage]} ></Search>
                 
-                {this.state.currPage === "students" || this.state.currPage === "companies" ? 
+                {this.state.currPage === "students" || this.state.currPage === "companies" || this.state.currPage === "pitched" ? 
                     <div className="checkboxes">
                         <label htmlFor="internships">internships:</label>
                         <input type="radio" id="check-int" name="internships" checked={this.state.radioVal === "internships"}  onChange={(event) =>this.setState({radioVal: event.target.name})}></input>

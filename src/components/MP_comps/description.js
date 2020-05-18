@@ -1,6 +1,7 @@
 import React from "react";
 import '../../App.css';
 import {PrioContext} from "../../prioContext.js"
+import {useHistory} from "react-router-dom"
 
 
 export default class Desc extends React.Component {
@@ -14,16 +15,47 @@ export default class Desc extends React.Component {
     componentDidMount(){
         
     }
+
+
+    approvePost = (context) => {
+
+        let selection = context.popData
+
+        selection.radioVal = this.props.radioVal
+
+        postData(selection, "Approve")
+        .then(res => res.json())
+        .then(fin => {
+            if(typeof(fin) === "string"){
+                alert(fin)
+            } else {
+                window.location.href=window.location.origin
+            }
+        })
+
+    }
+
+
+
     makeBtn =(con) =>{
 
         let activeCat = this.props.activeCat
 
         if(this.props.userType  === "studentNo"){
             return (
-            <button onClick={() => {con.setPrio({"id": con.popData.id, "title": con.popData.title}, activeCat);
-            con.setPop(false)}}>
-            add to list</button>
+            <div>
+                <button onClick={() => {con.setPrio({"id": con.popData.id, "title": con.popData.title}, activeCat);
+                con.setPop(false)}}>
+                add to list</button>
+            </div>
             )
+        } else if (this.props.userType === "employeeNo" && this.props.activeCat === "pitched"){
+            return(
+                <div>
+                    <button className="edit">edit</button>
+                    <button className="approve" onClick={()=> this.approvePost(con)}>approve</button>
+                </div>
+            );
         }
         
  
@@ -58,3 +90,22 @@ export default class Desc extends React.Component {
     }
 
 }
+
+
+const postData = async (data, mode) => {
+    
+   
+
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({data})
+    };
+    
+    const result = await fetch(
+      `http://192.168.64.3/php-aws-codepipeline/managePost.php?mode=${mode}`, requestOptions,
+    );
+    
+    return result
+
+  };
