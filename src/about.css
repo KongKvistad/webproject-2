@@ -43,11 +43,11 @@ li a:active {
     display: none;
 }
 
-#about-container {
+.about-container {
     margin-top: 50px;
 }
 
-h1, h2, h3 {
+.about-container h1, h2, h3 {
     margin: 25px 0;
     text-transform: uppercase;
 }

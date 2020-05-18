@@ -66,7 +66,7 @@ export default class Desc extends React.Component {
             <PrioContext.Consumer>
             {(context) => (
                 <div className={context.popData ? "popup-open" : "popup-closed"}>
-                    <p onClick = {() => context.setPop(false)}>Lukk</p>
+                    <p onClick = {() => context.setPop(false)}>Close</p>
                     <div className="title">
                         <h1>{context.popData.name}</h1>
                         <p>{context.popData.owner}</p>
