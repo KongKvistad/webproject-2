@@ -7,6 +7,7 @@ import mapCheckBoxes from "../helper_func/mapcheckboxes.js"
 import DragDrop from "../dragdrop/dragDropList.js"
 import getData from "../helper_func/getdata.js"
 import Search from "../MP_comps/search.js"
+import Form from "./form.js"
 
 import { PrioContext } from "../../prioContext.js"
 import { getDefaultNormalizer } from "@testing-library/react";
@@ -18,8 +19,8 @@ export default class Canvas extends React.Component {
             mpData: [1],
             admProjList: false,
             currPage: "internships",
-            radioVal: "internships"
-            
+            radioVal: "internships",
+            isFormOpen: false,
             
             
         } 
@@ -31,7 +32,7 @@ export default class Canvas extends React.Component {
 
     componentDidMount(){
         //aws: `http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/getmarketplace.php?${this.props.userType}=${this.props.userData}`  http://192.168.64.3/php-aws-codepipeline/getmarketplace.php?${this.props.userType}=${this.props.userData}
-        fetch(`http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/getmarketplace.php?${this.props.userType}=${this.props.userData}`, {signal: this.abortController.signal})
+        fetch(`http://192.168.64.3/php-aws-codepipeline/getmarketplace.php?${this.props.userType}=${this.props.userData}`, {signal: this.abortController.signal})
         .then(response => response.json())
         .then(res => this.setState({
             mpData: res.entries,
@@ -89,7 +90,9 @@ export default class Canvas extends React.Component {
     }
 
     
-
+    handleForm(){
+        this.setState({isFormOpen: !this.state.isFormOpen});
+    } 
     
     
     render() {
@@ -101,39 +104,52 @@ export default class Canvas extends React.Component {
               return <h1>loading...</h1>
           } else{
             return(
-                <div>
-            <h1 className="canvas">Marketplace</h1>
-            <ul>{this.tabshandler()}</ul>
-            
-                <Desc data={this.boxhandler()} userType= {this.props.userType} activeCat={this.state.currPage} radioVal = {this.state.radioVal}></Desc>
-                <div className="frame">
-                <div className = "toolbar">
-                
-                <Search items={this.state.mpData[this.state.currPage]} ></Search>
-                
-                {this.state.currPage === "students" || this.state.currPage === "companies" || this.state.currPage === "pitched" ? 
-                    <div className="checkboxes">
-                        <label htmlFor="internships">internships:</label>
-                        <input type="radio" id="check-int" name="internships" checked={this.state.radioVal === "internships"}  onChange={(event) =>this.setState({radioVal: event.target.name})}></input>
-                        <label htmlFor="projects">projects</label>
-                        <input type="radio" id="chec-proj" name="projects"  checked={this.state.radioVal === "projects"} onChange={(event) =>this.setState({radioVal: event.target.name})}></input>
-                    </div> :
-                    void(0)
-                }
-                </div>
-                    <div className="mp-container">
-                    
-                        <BoxComp 
-                         activeCat={this.state.currPage}
-                         radioVal={this.state.radioVal}
-                         user= {this.props.userType} 
-                         data ={this.boxhandler()}>
+                <div className="main">
+                    {/* <h1 className="canvas">Marketplace</h1> */}
 
-                        </BoxComp>
-                        {this.renderPrio(cats)}
+                    <ul>{this.tabshandler()}</ul>
+                    
+                    <div className={this.state.isFormOpen ? "form-visible" : "form-invisible"}>
+                        <Form></Form>
+                    </div>
+                    
+                    <Desc data={this.boxhandler()} userType={this.props.userType} activeCat={this.state.currPage} radioVal={this.state.radioVal}></Desc>
+                    
+                    <div className="frame">
+                        <div className="toolbar">
+                            <div className="search">
+                                <form onSubmit={this.onSubmit}>
+                                    
+                                    <input type="text" id="search" name="search" onChange={this.handleChange} placeholder="Search..."></input>
+                                </form>
+                            </div>
+                            {/* <Search items={this.state.mpData[this.state.currPage]} ></Search> */}
+
+                            {this.state.currPage === "students" || this.state.currPage === "companies" || this.state.currPage === "pitched" ?
+                                <div className="checkboxes">
+                                    <label htmlFor="internships">internships:</label>
+                                    <input type="radio" id="check-int" name="internships" checked={this.state.radioVal === "internships"} onChange={(event) => this.setState({ radioVal: event.target.name })}></input>
+                                    <label htmlFor="projects">projects</label>
+                                    <input type="radio" id="chec-proj" name="projects" checked={this.state.radioVal === "projects"} onChange={(event) => this.setState({ radioVal: event.target.name })}></input>
+                                </div> :
+                                void (0)
+                            }
+                            <button onClick={() => this.handleForm()}>New +</button>
+                        </div>
+                        <div className="mp-container">
+
+                            <BoxComp
+                                activeCat={this.state.currPage}
+                                radioVal={this.state.radioVal}
+                                user={this.props.userType}
+                                data={this.boxhandler()}>
+
+                            </BoxComp>
+                            {this.renderPrio(cats)}
+
+                        </div>
                     </div>
                 </div>
-        </div>
             )  
           }
         

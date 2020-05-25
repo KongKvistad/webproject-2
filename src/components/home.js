@@ -26,7 +26,10 @@ export default function Home(props) {
   
   const [internPrio, setIntern] = useState(false);
   const [projPrio, setProj] = useState(false);
-  const [savePos, setSave] = useState(false);
+  const [savePos1, setSave1] = useState(false);
+  const [savePos2, setSave2] = useState(false);
+  
+  const [groupNo, setGroupNo] = useState(false);
 
   const [PopData, setPop] = useState(false);
     
@@ -37,35 +40,29 @@ export default function Home(props) {
     
     const userType = user.hasOwnProperty("contactName") ? "name" : user.hasOwnProperty("employeeNo") ? "employeeNo" : user.hasOwnProperty("studentNo") ? "studentNo" : "reguser"
 
+    
  
     useEffect( () =>{
-      const fetchData = async () => {
-        const result = await fetch(
-          //aws: http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/priorities.php?${userType}=${user[userType]}
-          `http://192.168.64.3/php-aws-codepipeline/priorities.php?${userType}=${user[userType]}`,
-        );
-          return result
-        
-      };
-   
-      /* fetchData().then(res => res.json())
+      
+      fetchPrio().then(res => res.json())
       .then(json => {
         
         setIntern(json.internships)
         setProj(json.projects)
-      }) */
-
-      console.log(userType)
-      
-      fetch(`http://192.168.64.3/php-aws-codepipeline/priorities.php?${userType}=${user[userType]}`)
-        .then(response => response.json())
-        .then(data => {
-          
-          setIntern(data.internships)
-          setProj(data.projects)
-        
-        });
+        setGroupNo(json.groupNo)
+      }) 
     },[])
+    
+
+    const fetchPrio = async () => {
+      const result = await fetch(
+        //aws: http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/priorities.php?${userType}=${user[userType]}
+        `http://192.168.64.3/php-aws-codepipeline/priorities.php?${userType}=${user[userType]}`,
+      );
+        return result
+      
+    };
+ 
     
 
     
@@ -106,10 +103,16 @@ export default function Home(props) {
             setPop: (inp) => setPop(inp),
             
             //add / remove priorities to list
-            setPrio: (inp, type) => injectPrio(inp, type, internPrio, projPrio, setSave),
+            setPrio: (inp, type) => injectPrio(inp, type, internPrio, projPrio, setSave1, setSave2),
             
-            savePos: savePos,
-            setSave: (bool) => setSave(bool)
+            savePos1: savePos1,
+            setSave1: (bool) => setSave1(bool),
+
+            savePos2: savePos2,
+            setSave2: (bool) => setSave2(bool),
+
+
+            fetchPrio: () => fetchPrio(),
             
           }}>
           <Route exact path="/marketplace">
@@ -135,8 +138,8 @@ export default function Home(props) {
         <Redirect to="/marketplace"></Redirect> 
         <ul className="navbar">  
        
-        <Link to="/marketplace">Marketplace</Link>
-        <Link to="/about">Log Out</Link>
+        <li><Link to="/marketplace">Marketplace</Link></li>
+        <li><Link to="/about">Log Out</Link></li>
         </ul>
         <PrioContext.Provider value={{
           //what data to show in the popup
@@ -165,9 +168,9 @@ export default function Home(props) {
         <Redirect to="/about"></Redirect> 
         <ul className="navbar">   
      
-        <Link to="/marketplace">Marketplace</Link>
-        <Link to="/login">Log In</Link>
-        <Link to="/signup">Sign Up</Link>
+        <li><Link to="/marketplace">Marketplace</Link></li>
+        <li><Link to="/login">Log In</Link></li>
+        <li><Link to="/signup">Sign Up</Link></li>
       
         </ul>
         <PrioContext.Provider value={{

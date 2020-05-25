@@ -37,7 +37,12 @@ export default class BoxComp extends React.Component {
         </div>
         );
       } else {
-        return item.tags.split(",").map((x, idx) => <ul key={idx} className="tagslist"><li key={idx}>{x}</li></ul>)
+        return (
+         <ul className="tagslist">
+            {item.tags.split(",").map((x, idx) => <li key={idx}>{x}</li>)}
+         </ul> 
+        )
+        
         
       }
     }
