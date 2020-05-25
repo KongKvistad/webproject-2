@@ -17,6 +17,8 @@ const ItemStyle = (isDragging, draggableStyle) =>({
   color: isDragging? "white" : "black",
   borderStyle: "groove",
   position: "static",
+  display: "flex",
+  justifyContent: "space-between",
   // styles we need to apply on draggables
   ...draggableStyle
 });

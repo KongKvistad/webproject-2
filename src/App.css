@@ -13,15 +13,20 @@ html { font-size: 1vw; }
 
 .navbar{
   height: 5%;
-  display: flex;
-  flex-direction: row-reverse;
-  background-color: #dde7ee;
-  list-style-type: none;
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: #ececec;
+    list-style-type: none;
+    align-items: center;
 }
 .navbar li {
   padding-right: 20px;
 }
-
+.navbar a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
 /* dashboard */
 
 .parentwind{
@@ -81,10 +86,96 @@ html { font-size: 1vw; }
   align-items: center;
 
 }
+.groupBox >div:first-of-type{
+  display: flex;
+  justify-content:space-evenly;
+  align-items: center;
+
+}
+.groupBox > .lowHalf > * {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+
+}
+
+.groupBox button{
+  padding: 5px;
+  background-color: #357ffc;
+  color: white;
+  font-weight: bold;
+    min-width: 24%;
+    height: 28px;
+    cursor: pointer;
+}
+
+.uploadPop-vis{
+  height: 100vh;
+    width: 100vw;
+    background-color: #808080e6;
+    position: fixed;
+    /* margin: auto auto; */
+    top: 0;
+    left: 0;
+    z-index: 5;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.uploadPop-invis{
+  display: none;
+}
+
+.editor{
+  background-color: white;
+    border: 1px solid black;
+    width: 60%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.editor > button{
+  padding: 7px 40px;
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+  font-size: 1em;
+
+}
+
+.DraftEditor-root{
+  
+  width: 90%;
+  height: 70%;
+  border: 1px solid #afafaf;
+  padding: 20px;
+  overflow: auto;
+
+}
+
+.RichEditor-controls{
+  align-self: flex-start;
+  margin-left: 2em;
+
+}
+
+.RichEditor-controls > span{
+  background-color: #f3f3f3;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 3px;
+    border: 1px solid black;
+    cursor: pointer;
+}
 
 .dashbox{
   width: 18%;
-  height: 50%;
+  height: 60%;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
@@ -109,9 +200,12 @@ html { font-size: 1vw; }
 
 }
 .list-min{
-  width:40%;
+  width: 36%;
+  position: -webkit-sticky;
   position: sticky;
   top: 10%;
+  padding: 4% 0%;
+  height: 14em;
 }
 .dragList > button{
   min-width: 30%;
@@ -124,6 +218,8 @@ html { font-size: 1vw; }
   font-weight: bold;
   margin-right: 10%;
   padding: 5px;
+  cursor: pointer;
+    transition: 0.3s ease-out;
 }
 .btn-active{
   background-color: rgb(54, 127, 252);
@@ -136,7 +232,31 @@ html { font-size: 1vw; }
   
 }
 
+.exit{
+  background-color: white;
+    padding: 5px 10px;
+   
+    margin-left: auto;
+    margin-right: 2em;
+    margin-top: 1em;
+    font-weight: bold;;
+}
 
+.uploadField{
+  height: 100%;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #357ffc;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+}
+
+.uploadField:hover{
+  background-color: #c7defb;
+}
 
 
 
@@ -148,6 +268,18 @@ button:focus {outline:0;}
   color: #00509e; /*Denne blåfargen er NTNU blå*/
   width: 30%;
   margin-left: 40px;
+
+}
+
+.main{
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.main > ul{
+  display: flex;
+  width: 80%;
 
 }
 
@@ -170,6 +302,7 @@ button:focus {outline:0;}
 .frame{
   border: 1px solid black;
   margin: -0.5px 2px 0;
+  width:81%;
 }
 
 .mp-container { 
@@ -179,37 +312,61 @@ button:focus {outline:0;}
 .toolbar{
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 70%;
+  justify-content: flex-end;
+  width: 86%;
+  
+  padding: 2% 0%;
 
 }
-
-/*Søkebar + new-button*/
+.toolbar > button{
+  background-color: #3b88fd;
+    color: white;
+    font-size: 80%;
+    border-radius: 3px;
+    padding: 7px 3%;
+    font-weight: bold;
+    border: 1px solid #5f5f5f;
+    white-space: nowrap;
+}
+/*Søkebar */
 .search {
-  margin: 2%;
-  display: inline-grid;
-  grid-template-columns: auto auto auto;
-  grid-gap: 15px;  
+  margin-right: auto;
+    margin-left: 6%;
+    width: 30%;
+}
+
+.search input{
+  padding: 3% 1%;
+  width: 100%;
+}
+
+.checkboxes{
+  margin-right: 4%;
+    display: flex;
+    align-items: center;
+}
+
+.checkboxes > label{
+  margin-right: 3%;
+    font-weight: bold;
+}
+
+.checkboxes > input{
+  margin-right: 3%;
 }
 
 .search p {
   padding: 0 20px;
   border: 1px solid black;
 }
-.search button {
-  background-color: #f1d282;
-  border: none;
-  border-radius: 5px;
-  padding: 0 5px;
-  box-shadow: 2px 2px 3px rgb(119, 119, 119);
-  cursor: pointer;
-}
 /*Dette er boksene som inneholder de forskjellige
 bachelor og internship mulighetene*/
 .boxes {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
+  
+
 }
 
 .boxes-min{
@@ -231,43 +388,43 @@ bachelor og internship mulighetene*/
 
 /*Grid og styling for hver enkelt boks*/
 .box {
-  width: 25em;
-  height: 12.5em;
+  min-height: 75%;
   box-sizing: border-box;
-  display: grid;
-  grid-template: 'h h h'
-                 'o o o'
-                 't t t';
-  grid-gap: 5px;
-  margin: 5%;
-  padding: 2%;
-  border: 1px solid black;
-  border-radius: 7px;
-  box-shadow: 5px 5px 10px rgb(119, 119, 119);
-  text-align: center;  
-  cursor: pointer;
+    
+    border: 1px solid black;
+    border-radius: 2px;
+    box-shadow: 5px 5px 10px rgb(119, 119, 119);
+    text-align: center;
+    cursor: pointer;
+    margin: 2% 15% 15% 15%;
+    padding: 4% 7%;
 }
 
 .box h2 {
-  grid-area: h;
+  margin: 25px 0;
 }
 
 .box h3 {
-  grid-area: o;
+  font-size: 75%;
 }
 
 /*Styling av tags*/
 
 .tagslist {
   list-style-type: none;
+  
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .tagslist li {
   color: black;
-  margin: 2%;
-  border-radius: 5px;
-  background-color: #f1d282;
-  grid-area: t;
+    margin: 2%;
+    border-radius: 3px;
+    background-color: #f1d282;
+
+    padding: 3px 13px;
+    font-size: 80%;
   /*For skygge på bokser: box-shadow: 2px 1px 3px rgb(119, 119, 119);*/
 }
 

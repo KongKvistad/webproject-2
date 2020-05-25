@@ -1,12 +1,13 @@
-import React, {useState, useEffect, Component} from "react"
+import React, {useState, useEffect, Component, useContext} from "react"
 import DragDrop from "../dragdrop/dragDropList"
 import {PrioContext} from "../../prioContext.js"
-import { useContext } from "react"
+import {userContext} from "../../UserContext.js"
 import GroupOrPoc from "./groupOrPoc.js"
 
 export default function DashBoxes(props) {
     
-  
+    
+   
     
     const help = props.data.coordinator
 

@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
+import {UserContext} from "../../UserContext.js";
 import ReactDOM from "react-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import {ItemStyle, ListStyle} from "../dragdrop/dbStyle.js"
 import { PrioContext } from "../../prioContext.js";
-
+import MyEditor from "../texteditor.js"
 
 export default class DragDrop extends Component {
   static contextType = PrioContext;
@@ -12,9 +13,11 @@ export default class DragDrop extends Component {
     super(props);
     this.state = {
       items: false,
+      uploadPop: false,
     
     };
     this.onDragEnd = this.onDragEnd.bind(this);
+    
   }
 
   
@@ -38,20 +41,45 @@ export default class DragDrop extends Component {
    
     
     this.props.activeCat === "internships" ? context.reordIntern(items) : context.reordProj(items) 
-    context.setSave(true)
-  }
-
-  saveHandler = () => {
-    alert("replace this with post request");
-    this.context.setSave(false)
+    this.props.activeCat === "internships" ? context.setSave1(true) : context.setSave2(true)
     
   }
 
+  saveHandler = (user, savePos, data, cat, groupNo) => {
+    
+      
+      let group = groupNo ? groupNo : "none"; 
+      
+
+      postData(user.value.studentNo, data, cat, group)
+      .then(res => res.json())
+      .then(fin => {
+          if (!fin){
+            alert("somethign went wrong!")
+          } else {
+            console.log(fin)
+            this.context[savePos](false)
+          }
+      })
+    
+    
+    
+    
+    
+  }
+
+  setPop = (appId) => {
+    this.setState({uploadPop: appId})
+  }
   // Normally you would want to split things out into separate components.
   // But in this example everything is just done in one place for simplicity
   render() {
     const context = this.context
-   
+    
+    let saveType = this.props.activeCat === "internships" ? "setSave1" : "setSave2"
+    let savePos = this.props.activeCat === "internships" ? "savePos1" : "savePos2"
+
+
     //!this.context.projects && this.props.activeCat === "projects"
     if(!context.projects){
       return <p>loading</p>
@@ -86,7 +114,11 @@ export default class DragDrop extends Component {
                           provided.draggableProps.style
                         )}
                       >
-                        {" #" + (index + 1) + " - " + item.title}
+                        {item.title !== null &&
+                         item.title.split("").length > 20 ?
+                        " #" + (index + 1) + " - " +  item.title.split("").splice(0,20).join("") + "..." :
+                        " #" + (index + 1) + " - " + item.title}
+                        {item.title === null || this.props.activeCat === "projects" ? void 0 : <span onClick={() => this.setPop(item.id)} className="uploadField">␣</span>}
                       </div>
                     )}
                   </Draggable>
@@ -96,7 +128,16 @@ export default class DragDrop extends Component {
             )}
           </Droppable>
         </DragDropContext>
-        <button onClick={() => this.saveHandler()} className ={this.context.savePos ? "btn-active" : "btn-inactive"}>Save</button>
+        
+        <UserContext.Consumer>
+        {user => (
+        <button 
+          onClick={!context[savePos] ? ()=> alert("nothing to save") : () => this.saveHandler(user, saveType, this.context[this.props.activeCat], this.props.activeCat, context.groupNo)} 
+          className ={context[savePos] ? "btn-active" : "btn-inactive"}>Save</button>
+        )}
+        </UserContext.Consumer>
+        
+        <ApplicationPop isOpen = {this.state.uploadPop} closeWind={this.setPop} postType={this.props.activeCat}></ApplicationPop>
         </div>
       
       );
@@ -116,4 +157,34 @@ const reorder = (list, startIndex, endIndex) => {
   return result;
 };
 
+
+
+const ApplicationPop = (props) => {
+  return(
+    <div className={props.isOpen ? "uploadPop-vis" : "uploadPop-invis"}>
+      <span onClick={() => props.closeWind(false)} className="exit">x</span>
+      <MyEditor postId={props.isOpen} postType={props.postType}></MyEditor>
+    </div>
+  )
+}
+
+
+
+const postData = async (userNo, data, cat, group) => {
+    
+   
+
+  const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({data})
+  };
+  
+  const result = await fetch(
+    `http://192.168.64.3/php-aws-codepipeline/apply.php?userNo=${userNo}&type=${cat}&groupNo=${group}`, requestOptions,
+  );
+  
+  return result
+
+};
 

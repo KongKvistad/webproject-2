@@ -31,7 +31,7 @@ const GroupOrPoc = (props) => {
     
     if(props.type === "projects"){
         return (
-            <div className="dashbox">
+            <div className="dashbox groupBox">
                 <div>
                 {group.isGroup ? <h2>My Group</h2> : <h2>make Group</h2>}
                 {group.isGroup ? <button onClick={() => destroyGroup()}>destroy</button> : void(0)}
