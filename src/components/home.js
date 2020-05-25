@@ -41,8 +41,8 @@ export default function Home(props) {
     useEffect( () =>{
       const fetchData = async () => {
         const result = await fetch(
-          //aws: http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/priorities.php?${userType}=${user[userType]}
-          `http://192.168.64.3/php-aws-codepipeline/priorities.php?${userType}=${user[userType]}`,
+          //aws: http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/priorities.php?${userType}=${user[userType]}  __ http://192.168.64.3/php-aws-codepipeline/priorities.php?${userType}=${user[userType]}
+          `http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/priorities.php?${userType}=${user[userType]}`,
         );
           return result
         
@@ -57,7 +57,7 @@ export default function Home(props) {
 
       console.log(userType)
       
-      fetch(`http://192.168.64.3/php-aws-codepipeline/priorities.php?${userType}=${user[userType]}`)
+      fetch(`http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/priorities.php?${userType}=${user[userType]}`)
         .then(response => response.json())
         .then(data => {
           
