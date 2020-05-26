@@ -32,7 +32,7 @@ export default class Canvas extends React.Component {
 
     componentDidMount(){
         //aws: `http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/getmarketplace.php?${this.props.userType}=${this.props.userData}`  http://192.168.64.3/php-aws-codepipeline/getmarketplace.php?${this.props.userType}=${this.props.userData}
-        fetch(`http://192.168.64.3/php-aws-codepipeline/getmarketplace.php?${this.props.userType}=${this.props.userData}`, {signal: this.abortController.signal})
+        fetch(`http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/getmarketplace.php?${this.props.userType}=${this.props.userData}`, {signal: this.abortController.signal})
         .then(response => response.json())
         .then(res => this.setState({
             mpData: res.entries,
@@ -105,7 +105,7 @@ export default class Canvas extends React.Component {
           } else{
             return(
                 <div className="main">
-                    {/* <h1 className="canvas">Marketplace</h1> */}
+                    <h1 className="canvas">Marketplace</h1> 
 
                     <ul>{this.tabshandler()}</ul>
                     

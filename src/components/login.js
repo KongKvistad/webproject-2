@@ -77,7 +77,7 @@ const fetchData = async (userType, mail, pass) => {
     };
     
     const result = await fetch(
-      `http://192.168.64.3/php-aws-codepipeline/login.php?`, requestOptions,
+      `http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/login.php?`, requestOptions,
     );
     
     return result

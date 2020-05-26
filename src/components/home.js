@@ -43,21 +43,8 @@ export default function Home(props) {
     
  
     useEffect( () =>{
-<<<<<<< HEAD
-      const fetchData = async () => {
-        const result = await fetch(
-          //aws: http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/priorities.php?${userType}=${user[userType]}  __ http://192.168.64.3/php-aws-codepipeline/priorities.php?${userType}=${user[userType]}
-          `http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/priorities.php?${userType}=${user[userType]}`,
-        );
-          return result
-        
-      };
-   
-      /* fetchData().then(res => res.json())
-=======
       
       fetchPrio().then(res => res.json())
->>>>>>> fee6e81c21949532985e41841dd1985b0b79636e
       .then(json => {
         
         setIntern(json.internships)
@@ -70,24 +57,12 @@ export default function Home(props) {
     const fetchPrio = async () => {
       const result = await fetch(
         //aws: http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/priorities.php?${userType}=${user[userType]}
-        `http://192.168.64.3/php-aws-codepipeline/priorities.php?${userType}=${user[userType]}`,
+        `http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/priorities.php?${userType}=${user[userType]}`,
       );
         return result
       
-<<<<<<< HEAD
-      fetch(`http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/priorities.php?${userType}=${user[userType]}`)
-        .then(response => response.json())
-        .then(data => {
-          
-          setIntern(data.internships)
-          setProj(data.projects)
-        
-        });
-    },[])
-=======
     };
  
->>>>>>> fee6e81c21949532985e41841dd1985b0b79636e
     
 
     
@@ -107,6 +82,7 @@ export default function Home(props) {
         
         <ul className="navbar">
         <Link to="/about">Log Out</Link>
+        <li><Link to="/about">About</Link></li>
         <li><Link to="/marketplace">Marketplace</Link></li>
         <li><Link to="/dashboard">Dashboard</Link></li>
         
@@ -192,7 +168,7 @@ export default function Home(props) {
         <Router>
         <Redirect to="/about"></Redirect> 
         <ul className="navbar">   
-     
+        <li><Link to="/about">About</Link></li>
         <li><Link to="/marketplace">Marketplace</Link></li>
         <li><Link to="/login">Log In</Link></li>
         <li><Link to="/signup">Sign Up</Link></li>
