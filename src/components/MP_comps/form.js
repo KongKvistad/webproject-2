@@ -1,5 +1,6 @@
 import React, {useContext} from "react";
 import {UserContext} from "../../UserContext.js"
+import Endpoint from "../endpoint.js"
 
 
 
@@ -224,7 +225,7 @@ const fetchData = async (data) => {
     };
     
     const result = await fetch(
-      `http://192.168.64.3/php-aws-codepipeline/newPost.php`, requestOptions,
+      `${Endpoint}/newPost.php`, requestOptions,
     );
     
     return result

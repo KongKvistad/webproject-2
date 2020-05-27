@@ -36,13 +36,15 @@ export default function App() {
     //option 1: exists in localstorage
     if(lsToken){
       let data = JSON.parse(lsToken) 
-      console.log("hit")
+      console.log(auth)
       setAuth(data)
     } 
     //option 2: token is supplied in url
     else if (tokenChk.hasOwnProperty("studentNo") || tokenChk.hasOwnProperty("employeeNo") || tokenChk.hasOwnProperty("contactName")){
       localStorage.setItem('token', JSON.stringify(tokenChk));
+      
       setAuth(tokenChk)
+      console.log(auth)
     } 
     else{
       setAuth("reguser")

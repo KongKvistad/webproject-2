@@ -37,14 +37,14 @@ export default function DashBoxes(props) {
         return (
             <div className="box-row">
                 <div className="dashbox">
-                    <h2>Add student</h2>
+                    <h2>pitches</h2>
                         <ul className="lowHalf">
                             
                         </ul>
                     
                 </div>
                 <div className="dashbox">
-                    <h2>Assign mentor</h2>
+                    <h2>students</h2>
                         <ul className="lowHalf">
                             
                         </ul>
@@ -52,7 +52,7 @@ export default function DashBoxes(props) {
                 </div>
                 
                 <div className="dashbox">
-                    <h2>Sort applications</h2>
+                    <h2>companies</h2>
                         <ul className="lowHalf">
                             
                         </ul>

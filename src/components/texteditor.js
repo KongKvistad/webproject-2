@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {UserContext} from "../UserContext"
 import ReactDOM from 'react-dom';
 import {Editor, EditorState, convertToRaw, RichUtils, convertFromRaw} from 'draft-js';
+import Endpoint from "./endpoint.js";
 function MyEditor(props) {
     
     const [loading, setLoad] = useState(false);
@@ -16,14 +17,15 @@ function MyEditor(props) {
   
   let type = props.postType
   let id = props.postId
-  let userId = user.studentNo
+  let userId = user.studentNo || user.name || user.employeeNo
 
     useEffect( () => {
         
         let data = {
         "postType" : type,
         "postId" : id,
-        "userId" : userId
+        "userId" : userId,
+        "postOrApp": props.postOrApp
         }
         
         setLoad(true);
@@ -33,8 +35,8 @@ function MyEditor(props) {
             if(final!== null){
                 
                 let fetchedData = {
-                    blocks: JSON.parse(final.text).blocks,
-                    entityMap: JSON.parse(final.text).blocks,
+                    blocks: JSON.parse(final.text || final.description).blocks,
+                    entityMap: JSON.parse(final.text || final.description).blocks,
                 }
 
                 setEditorState(EditorState.createWithContent(convertFromRaw(fetchedData)));
@@ -85,7 +87,7 @@ function MyEditor(props) {
       return <h3>loading...</h3>
   } else {
     return (
-        <div className="editor">
+        <div className={props.postOrApp ? "editor edit-public" : "editor"}>
             <BlockStyleControls
                 editorState={editorState}
                 onToggle={toggleBlockType}
@@ -161,7 +163,7 @@ const postData = async (data) => {
     };
     
     const result = await fetch(
-      `http://192.168.64.3/php-aws-codepipeline/applications.php`, requestOptions,
+      `${Endpoint}/applications.php`, requestOptions,
     );
     
     return result
@@ -173,7 +175,7 @@ const postData = async (data) => {
 
   const getData = async (data) => {
     const result = await fetch(
-      `http://192.168.64.3/php-aws-codepipeline/applications.php?userId=${data.userId}&postId=${data.postId}`
+      `${Endpoint}/applications.php?userId=${data.userId}&postId=${data.postId}&public=${data.postOrApp}`
     );
     return result
   };

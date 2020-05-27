@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useContext} from "react";
+import Endpoint from "./endpoint.js"
 import {
   BrowserRouter as Router,
   Switch,
@@ -50,6 +51,8 @@ export default function Home(props) {
         setIntern(json.internships)
         setProj(json.projects)
         setGroupNo(json.groupNo)
+
+        console.log(userType)
       }) 
     },[])
     
@@ -57,7 +60,7 @@ export default function Home(props) {
     const fetchPrio = async () => {
       const result = await fetch(
         //aws: http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/priorities.php?${userType}=${user[userType]}
-        `http://192.168.64.3/php-aws-codepipeline/priorities.php?${userType}=${user[userType]}`,
+        `${Endpoint}/priorities.php?${userType}=${user[userType]}`,
       );
         return result
       
@@ -148,7 +151,7 @@ export default function Home(props) {
         }}>
         <Route exact path="/marketplace">
             
-            <Canvas></Canvas>
+            <Canvas userType={userType} userData={user[userType]}></Canvas>
         </Route>
 
         </PrioContext.Provider>

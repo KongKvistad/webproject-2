@@ -1,8 +1,9 @@
 import React from "react";
 import '../../App.css';
 import {PrioContext} from "../../prioContext.js"
-import {useHistory} from "react-router-dom"
-
+import {useHistory} from "react-router-dom";
+import MyEditor from "../texteditor.js"
+import Endpoint from "../endpoint.js"
 
 export default class Desc extends React.Component {
 
@@ -62,23 +63,25 @@ export default class Desc extends React.Component {
     }
     
     render() {
+        
+
         return(
             <PrioContext.Consumer>
             {(context) => (
                 <div className={context.popData ? "popup-open" : "popup-closed"}>
                     <p onClick = {() => context.setPop(false)}>Close</p>
                     <div className="title">
-                        <h1>{context.popData.name}</h1>
-                        <p>{context.popData.owner}</p>
+                        <h1>{context.popData.title}</h1>
+                        <p>{context.popData.companyName}</p>
                     </div>
                     <div className="info">
-                        <p>Start date: {context.popData.dato}</p>
-                        <p>POC: {context.popData.poc}</p>
+                        <p>Start date: {context.popData.startDate}</p>
+                        <p>POC: {context.popData.author}</p>
                         <p>Tags: {context.popData.tags}</p>
                     </div>
                     <div className="content">
                         <h2>Description</h2>
-                        <p>{context.popData.description}</p>
+                        <MyEditor postId={context.popData.id} postType={this.props.radioVal} postOrApp = {true}></MyEditor>
                     </div>
                     {this.makeBtn(context)}
               
@@ -103,7 +106,7 @@ const postData = async (data, mode) => {
     };
     
     const result = await fetch(
-      `http://192.168.64.3/php-aws-codepipeline/managePost.php?mode=${mode}`, requestOptions,
+      `${Endpoint}/managePost.php?mode=${mode}`, requestOptions,
     );
     
     return result
