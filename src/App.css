@@ -1,5 +1,5 @@
 html { font-size: 1vw;
-margin-bottom: 200px; }
+margin-bottom: 75px; }
 
 *{
   margin: 0;
@@ -9,7 +9,6 @@ margin-bottom: 200px; }
 #root{
   height: 100vh;
 }
-
 
 
 .navbar, footer{
@@ -358,6 +357,7 @@ button:focus {
     font-weight: bold;
     border: 1px solid #5f5f5f;
     white-space: nowrap;
+    cursor: pointer;
 }
 /*Søkebar */
 .search {

@@ -136,7 +136,7 @@ export default class Canvas extends React.Component {
                                 </div> :
                                 void (0)
                             }
-                            <button onClick={() => this.handleForm()}>New +</button>
+                            <button onClick={() => this.handleForm()}>+ New idea</button>
                         </div>
                         <div className="mp-container" >
 
@@ -151,7 +151,6 @@ export default class Canvas extends React.Component {
 
                         </div>
                     </div>
-                    <footer>Hello</footer>
                 </div>
             )  
           }
