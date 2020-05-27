@@ -75,6 +75,7 @@ export default class Window extends React.Component {
   
       
       return  <div className="parentwind">
+        <h1>Dashboard</h1>
                   
                     <div className="slidewind">
                     

@@ -107,7 +107,7 @@ export default class Canvas extends React.Component {
           } else{
             return(
                 <div className="main">
-                    {/* <h1 className="canvas">Marketplace</h1> */}
+                    <h1 className="canvas">Marketplace</h1> 
 
                     <ul>{this.tabshandler()}</ul>
                     

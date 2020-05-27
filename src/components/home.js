@@ -85,6 +85,7 @@ export default function Home(props) {
         
         <ul className="navbar">
         <Link to="/about">Log Out</Link>
+        <li><Link to="/about">About</Link></li>
         <li><Link to="/marketplace">Marketplace</Link></li>
         <li><Link to="/dashboard">Dashboard</Link></li>
         
@@ -170,7 +171,7 @@ export default function Home(props) {
         <Router>
         <Redirect to="/about"></Redirect> 
         <ul className="navbar">   
-     
+        <li><Link to="/about">About</Link></li>
         <li><Link to="/marketplace">Marketplace</Link></li>
         <li><Link to="/login">Log In</Link></li>
         <li><Link to="/signup">Sign Up</Link></li>
