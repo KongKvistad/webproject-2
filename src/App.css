@@ -1,4 +1,5 @@
-html { font-size: 1vw; }
+html { font-size: 1vw;
+margin-bottom: 200px; }
 
 *{
   margin: 0;
@@ -11,7 +12,7 @@ html { font-size: 1vw; }
 
 
 
-.navbar{
+.navbar, footer{
   height: 5%;
     display: flex;
     flex-direction: row-reverse;
@@ -104,7 +105,7 @@ li {
 
 .groupBox button{
   padding: 5px;
-  background-color: #357ffc;
+  background-color: #00509e;
   color: white;
   font-weight: bold;
     min-width: 24%;
@@ -164,8 +165,8 @@ li {
 
 .editor > button{
   padding: 7px 40px;
-  background-color: blue;
-  color: white;
+  /* background-color: blue; */
+  /* color: white; */
   font-weight: bold;
   font-size: 1em;
 
@@ -248,7 +249,7 @@ li {
     transition: 0.3s ease-out;
 }
 .btn-active{
-  background-color: rgb(54, 127, 252);
+  background-color: #00509e;
   color: white
 }
 .btn-inactive{
@@ -274,7 +275,7 @@ li {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #357ffc;
+    background-color: #00509e;
     color: white;
     cursor: pointer;
     transition: 0.3s ease-out;
@@ -286,7 +287,9 @@ li {
 
 
 
-button:focus {outline:0;}
+button:focus {
+  outline: 0;
+}
 
 
 /* marketplace */
@@ -311,6 +314,7 @@ button:focus {outline:0;}
 
 .tab{
   border: 1px solid black;
+  border-bottom: none;
   background-color: white;
   margin: 0 2px;
   color: black;
@@ -320,13 +324,9 @@ button:focus {outline:0;}
   display: inline-block;
 }
 
-/*Erstatte med active for å få tab-looken?*/
-.tab:hover{
-  border-bottom: 1px solid white;
-}
 
 .tab-active{
-  background-color:#3b88fd;
+  background-color:#00509e;
   color:white;
 }
 
@@ -350,7 +350,7 @@ button:focus {outline:0;}
 
 }
 .toolbar > button{
-  background-color: #3b88fd;
+  background-color: #00509e;
     color: white;
     font-size: 80%;
     border-radius: 3px;
@@ -433,13 +433,14 @@ bachelor og internship mulighetene*/
 }
 
 .activebanner{
-  background-color: #40d203d1;
+  background-color: #1D6001 /* #40d203d1 */;
     padding: 11px 0px;
     width: 100%;
     position: absolute;
     left: 0;
     top: 43%;
-    color: black;
+    color: white;
+    text-transform: capitalize;
     /* text-shadow: 2px 0px 3px black; */
     box-shadow: 0px 5px 5px 0px #00000080;
     font-weight: bold;
@@ -642,15 +643,7 @@ h1 {
   align-self: center;
 }
 
-#formsubmit {
-  padding: 10px 20px;
-  float: right;
-  background-color: #f1d282;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 2px 2px 3px rgb(119, 119, 119);
-  cursor: pointer;
-}
+
 .form-invisible {
   display: none;
 }
@@ -684,16 +677,19 @@ h1 {
   width: 10%;
   margin-bottom: 15px;
 }
-.regForm input[type="submit"], .edit, .approve {
+.regForm input[type="submit"], .edit, .approve, .addtolist, .texteditor, #formsubmit {
   margin-top: 25px;
   margin-right: 10px;
   background-color: #f1d282;
-  border: none;
+  border: 1px solid rgb(56, 56, 56);
   border-radius: 5px;
-  box-shadow: 2px 2px 3px rgb(119, 119, 119);
+  box-shadow: 2px 2px 3px rgb(29, 29, 29);
   cursor: pointer;
   width: 25%;
   padding: 10px;
+}
+.groupbuttons{
+  border-radius: 5px;
 }
 
 

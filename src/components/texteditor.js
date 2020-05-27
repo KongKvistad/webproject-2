@@ -84,7 +84,7 @@ function MyEditor(props) {
 
 
   if(loading){
-      return <h3>loading...</h3>
+      return <span className ="loading">loading...</span>
   } else {
     return (
         <div className={props.postOrApp ? "editor edit-public" : "editor"}>
@@ -93,7 +93,7 @@ function MyEditor(props) {
                 onToggle={toggleBlockType}
                 />
             <Editor editorState={editorState} onChange={setEditorState}/>
-            <button onClick={()=> saveText()}>Save</button> 
+            <button className="texteditor" onClick={()=> saveText()}>Save</button> 
         </div>
       );
   }

@@ -51,7 +51,7 @@ export default function Login(props){
                 <input type="checkbox" onChange={() => setAdmin(!isAdmin)}></input>
             </label><br />
             <label className="username">
-                <span>Username:</span>
+                <span>Email:</span>
                 <input type="text" value={email} onChange={(e) => handleUser(e, setEmail)}></input>
             </label>
             <label className="password">
@@ -59,7 +59,7 @@ export default function Login(props){
                 <input type="password" value={pass} onChange={(e) => handleUser(e, setPass)}></input>
             </label>
             <label>
-                <input type="submit" onClick={(e) => handleClick(e)}></input>
+                <input type="submit" value="Sign in" onClick={(e) => handleClick(e)}></input>
             </label>
             
         </form>

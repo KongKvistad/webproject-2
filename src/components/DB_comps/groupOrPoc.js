@@ -34,7 +34,7 @@ const GroupOrPoc = (props) => {
             <div className="dashbox groupBox">
                 <div>
                 {group.isGroup ? <h2>My Group</h2> : <h2>make Group</h2>}
-                {group.isGroup ? <button onClick={() => destroyGroup()}>destroy</button> : void(0)}
+                {group.isGroup ? <button className ="groupbuttons" onClick={() => destroyGroup()}>Destroy</button> : void(0)}
                 </div>
                 <div className="lowHalf">
                 {mapMembers(group)}
@@ -133,12 +133,12 @@ const GroupOrPoc = (props) => {
                      ?
                      <div>
                         <span>{group[item].email}</span>
-                        <button onClick={() => removeMemb(item)}>remove</button>
+                        <button className ="groupbuttons" onClick={() => removeMemb(item)}>Remove</button>
                      </div>
                      :
                      <div>
                      <input placeholder={"add@ntnu.no"} onChange={e => updateMember(e, item)}/>  
-                     <button onClick={() => addNew(item, newMemb[item])}>add</button>
+                     <button className ="groupbuttons" onClick={() => addNew(item, newMemb[item])}>Add</button>
                      </div> 
 
                     

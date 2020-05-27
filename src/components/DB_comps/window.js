@@ -68,14 +68,14 @@ export default class Window extends React.Component {
 
   render() {
     if(!this.state.dbData){
-      return <div>loading...</div>
+      return <span className ="loading">loading...</span>
     } else {
     const activePage = this.state.currPage;
     const cats = Object.keys(this.state.dbData.timeline)
   
       
       return  <div className="parentwind">
-        <h1>Dashboard</h1>
+        {/* <h1>Dashboard</h1> */}
                   
                     <div className="slidewind">
                     
@@ -100,6 +100,7 @@ export default class Window extends React.Component {
                   
                
                 <Timeline timeData={this.state.dbData.timeline[activePage]}></Timeline>
+                {/* <footer>hElo</footer> */}
                 
               </div>
     }
