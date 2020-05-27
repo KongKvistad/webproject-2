@@ -54,7 +54,9 @@ html { font-size: 1vw; }
   position: absolute;
   z-index: 1;
   font-size: 2vw;
-  
+}
+li {
+  text-transform: capitalize;
 }
 
 .intern-li{
@@ -432,6 +434,12 @@ bachelor og internship mulighetene*/
 h1, h2, h3 {
   color: #00509e;
 }
+h1 {
+  text-align: center;
+  padding: 0 0 50px 0px;
+  font-size: 50px;
+  /* visibility: hidden; */
+}
 
 .popup-open{ /*Vinduet som popper opp når man trykker på en boks*/
   width: 70%;
@@ -602,14 +610,16 @@ h1, h2, h3 {
   width: 10%;
   margin-bottom: 15px;
 }
-.regForm input[type="submit"] {
+.regForm input[type="submit"], .edit, .approve {
   margin-top: 25px;
+  margin-right: 10px;
   background-color: #f1d282;
   border: none;
   border-radius: 5px;
   box-shadow: 2px 2px 3px rgb(119, 119, 119);
   cursor: pointer;
   width: 25%;
+  padding: 10px;
 }
 
 
@@ -653,3 +663,4 @@ h1, h2, h3 {
       display: block;
   }
 }
+

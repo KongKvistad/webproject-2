@@ -94,7 +94,7 @@ export default class BoxComp extends React.Component {
                 {(context) => (
                 <div key = {idx} className="box" onClick = {() => context.setPop(item)}>
                   <h2 key={"heading" + idx}>{item.title}</h2>
-                  <h3 key={"owner" + idx}>by {item.author}</h3>
+                  <h3 key={"owner" + idx}>by {item.companyName}</h3>
                   {this.tagshandler(item)}
                 </div>
                 )}
@@ -110,7 +110,7 @@ export default class BoxComp extends React.Component {
                   {(context) => (
                   <div key = {idx} className="box" onClick = {() => context.setPop(item)}>
                     <h2 key={"heading" + idx}>{item.title}</h2>
-                    <h3 key={"owner" + idx}>by {item.author}</h3>
+                    <h3 key={"owner" + idx}>by {item.companyName}</h3>
                     {this.tagshandler(item)}
                   </div>
                   )}

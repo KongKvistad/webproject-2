@@ -52,8 +52,8 @@ export default class Desc extends React.Component {
         } else if (this.props.userType === "employeeNo" && this.props.activeCat === "pitched"){
             return(
                 <div>
-                    <button className="edit">edit</button>
-                    <button className="approve" onClick={()=> this.approvePost(con)}>approve</button>
+                    <button className="edit">Edit</button>
+                    <button className="approve" onClick={()=> this.approvePost(con)}>Approve</button>
                 </div>
             );
         }
