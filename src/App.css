@@ -396,7 +396,6 @@ bachelor og internship mulighetene*/
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
-  
 
 }
 
@@ -467,14 +466,13 @@ bachelor og internship mulighetene*/
 .box {
   min-height: 75%;
   box-sizing: border-box;
-    
-    border: 1px solid black;
-    border-radius: 2px;
-    box-shadow: 5px 5px 10px rgb(119, 119, 119);
-    text-align: center;
-    cursor: pointer;
-    margin: 2% 15% 15% 15%;
-    padding: 4% 7%;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgb(119, 119, 119);
+  text-align: center;
+  cursor: pointer;
+  margin: 2% 15% 15% 15%;
+  padding: 4% 7%;
 }
 
 .box h2 {
