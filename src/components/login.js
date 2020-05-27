@@ -2,6 +2,7 @@ import React, {Component, useState} from "react"
 import parseJwt from "./auth.js"
 import { useHistory } from "react-router-dom";
 import Logo from "../ntnu-logo.png";
+import Endpoint from "./endpoint.js"
 export default function Login(props){
 
 
@@ -77,7 +78,7 @@ const fetchData = async (userType, mail, pass) => {
     };
     
     const result = await fetch(
-      `http://ec2-13-48-129-131.eu-north-1.compute.amazonaws.com/login.php?`, requestOptions,
+      `${Endpoint}/login.php?`, requestOptions,
     );
     
     return result

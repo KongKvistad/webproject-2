@@ -3,6 +3,7 @@ import parseJwt from "./auth.js"
 import { useHistory } from "react-router-dom";
 import Logo from "../ntnu-logo.png";
 import { UserContext } from "../UserContext";
+import Endpoint from "./endpoint.js"
 export default function Signup(props){
 
 
@@ -133,7 +134,7 @@ const fetchData = async (data) => {
     };
     
     const result = await fetch(
-      `http://192.168.64.3/php-aws-codepipeline/signup.php?`, requestOptions,
+      `${Endpoint}/signup.php?`, requestOptions,
     );
     
     return result

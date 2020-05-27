@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext, Component} from "react"
 import { UserContext } from "../../UserContext";
-
+import Endpoint from "../endpoint.js"
 
 const GroupOrPoc = (props) => {
     
@@ -164,7 +164,7 @@ const fetchData = async (user, stateType, member) => {
     };
     
     const result = await fetch(
-      `http://192.168.64.3/php-aws-codepipeline/manageGroups.php?${userType}=${userNo}&method=add`, requestOptions,
+      `${Endpoint}/manageGroups.php?${userType}=${userNo}&method=add`, requestOptions,
     );
     
     return result
@@ -184,7 +184,7 @@ const fetchData = async (user, stateType, member) => {
     };
     
     const result = await fetch(
-      `http://192.168.64.3/php-aws-codepipeline/manageGroups.php?${userType}=${userNo}&method=${delType}`, requestOptions,
+      `${Endpoint}/manageGroups.php?${userType}=${userNo}&method=${delType}`, requestOptions,
     );
     
     return result

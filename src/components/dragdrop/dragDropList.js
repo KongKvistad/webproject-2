@@ -5,6 +5,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import {ItemStyle, ListStyle} from "../dragdrop/dbStyle.js"
 import { PrioContext } from "../../prioContext.js";
 import MyEditor from "../texteditor.js"
+import Endpoint from "../endpoint.js"
 
 export default class DragDrop extends Component {
   static contextType = PrioContext;
@@ -163,7 +164,7 @@ const ApplicationPop = (props) => {
   return(
     <div className={props.isOpen ? "uploadPop-vis" : "uploadPop-invis"}>
       <span onClick={() => props.closeWind(false)} className="exit">x</span>
-      <MyEditor postId={props.isOpen} postType={props.postType}></MyEditor>
+      <MyEditor postId={props.isOpen} postType={props.postType} postOrApp={false}></MyEditor>
     </div>
   )
 }
@@ -181,7 +182,7 @@ const postData = async (userNo, data, cat, group) => {
   };
   
   const result = await fetch(
-    `http://192.168.64.3/php-aws-codepipeline/apply.php?userNo=${userNo}&type=${cat}&groupNo=${group}`, requestOptions,
+    `${Endpoint}/apply.php?userNo=${userNo}&type=${cat}&groupNo=${group}`, requestOptions,
   );
   
   return result
