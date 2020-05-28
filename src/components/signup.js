@@ -87,7 +87,7 @@ export default function Signup(props){
                     
                 </label>
                 <label className="mail">
-                    <span>Mail:</span>
+                    <span>Contact email:</span>
                     <input type="text" value={email} onChange={(e) => handleUser(e, setEmail)}></input>
                 </label>
                 <label className="username">

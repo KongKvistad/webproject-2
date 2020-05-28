@@ -45,16 +45,16 @@ export default class Desc extends React.Component {
         if(this.props.userType  === "studentNo"){
             return (
             <div>
-                <button onClick={() => {con.setPrio({"id": con.popData.id, "title": con.popData.title}, activeCat);
+                <button className = "addtolist" onClick={() => {con.setPrio({"id": con.popData.id, "title": con.popData.title}, activeCat);
                 con.setPop(false)}}>
-                add to list</button>
+                Add to list</button>
             </div>
             )
         } else if (this.props.userType === "employeeNo" && this.props.activeCat === "pitched"){
             return(
                 <div>
-                    <button className="edit">edit</button>
-                    <button className="approve" onClick={()=> this.approvePost(con)}>approve</button>
+                    <button className="edit">Edit</button>
+                    <button className="approve" onClick={()=> this.approvePost(con)}>Approve</button>
                 </div>
             );
         }
@@ -71,7 +71,7 @@ export default class Desc extends React.Component {
                 <div className={context.popData ? "popup-open" : "popup-closed"}>
                     <p onClick = {() => context.setPop(false)}>Close</p>
                     <div className="title">
-                        <h1>{context.popData.title}</h1>
+                        <h2>{context.popData.title}</h2>
                         <p>{context.popData.companyName}</p>
                     </div>
                     <div className="info">

@@ -84,7 +84,7 @@ function MyEditor(props) {
 
 
   if(loading){
-      return <h3>loading...</h3>
+      return <span className ="loading">loading...</span>
   } else {
     return (
         <div className={props.editable ? "canEdit" : "noEdit"}>

@@ -103,11 +103,11 @@ export default class Canvas extends React.Component {
         
       
           if(this.state.mpData.length === 1){
-              return <h1>loading...</h1>
+              return <span className ="loading">loading...</span>
           } else{
             return(
                 <div className="main">
-                    <h1 className="canvas">Marketplace</h1> 
+                    <h1>Marketplace</h1> 
 
                     <ul>{this.tabshandler()}</ul>
                     
@@ -136,7 +136,7 @@ export default class Canvas extends React.Component {
                                 </div> :
                                 void (0)
                             }
-                            <button onClick={() => this.handleForm()}>New +</button>
+                            <button onClick={() => this.handleForm()}>+ New idea</button>
                         </div>
                         <div className="mp-container" >
 

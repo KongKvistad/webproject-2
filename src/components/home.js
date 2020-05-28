@@ -141,7 +141,7 @@ export default function Home(props) {
         <Router>
         <Redirect to="/marketplace"></Redirect> 
         <ul className="navbar">  
-       
+        <li><Link to="/about">About</Link></li>
         <li><Link to="/marketplace">Marketplace</Link></li>
         <li><Link to="/about">Log Out</Link></li>
         </ul>

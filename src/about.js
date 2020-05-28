@@ -52,6 +52,8 @@ export default function About(props){
                     want any secrecy around the projects and internship, in order to ensure that the student will get the best outcome of 
                     working for your company. This means that the student should be able to discuss issues they meet while working for you, 
                     and they should be able to show it off to future employers. </p>
+
+            
         </div>
     );
     
