@@ -81,7 +81,7 @@ export default class Desc extends React.Component {
                     </div>
                     <div className="content">
                         <h2>Description</h2>
-                        <MyEditor postId={context.popData.id} postType={this.props.radioVal} postOrApp = {true}></MyEditor>
+                        <MyEditor postId={context.popData.id} postType={this.props.radioVal} postOrApp = {true} editable={false}></MyEditor>
                     </div>
                     {this.makeBtn(context)}
               

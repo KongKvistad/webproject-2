@@ -5,6 +5,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import {ItemStyle, ListStyle} from "../dragdrop/dbStyle.js"
 import {UserContext} from "../../UserContext"
 import Endpoint from "../endpoint.js"
+import MyEditor from "../texteditor"
 
 
 export default class BiPrio extends Component {
@@ -15,7 +16,8 @@ export default class BiPrio extends Component {
     super(props);
     this.state = {
       items: props.prioList,
-      canSave: false
+      canSave: false,
+      uploadPop: false
     };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
@@ -23,7 +25,7 @@ export default class BiPrio extends Component {
   componentDidMount(){
     const company = this.context.value.name
     if(this.props.type){
-      getData(this.props.type, company, this.props.postId)
+      getData(this.props.type, this.props.postId)
       .then(res => res.json())
       .then(fin => {
         console.log(fin)
@@ -60,13 +62,27 @@ export default class BiPrio extends Component {
   }
 
   saveHandler = () => {
-    alert("replace this with post request");
-    this.setState({canSave: false})
+    postData(this.props.type,this.props.postId,this.state.items)
+    .then(res=> res.json())
+    .then(fin => {
+      if(fin){
+        this.setState({canSave: false})
+      }
+    })
+    
   }
 
+
+  setPop = (appId) => {
+    this.setState({uploadPop: appId})
+  }
   // Normally you would want to split things out into separate components.
   // But in this example everything is just done in one place for simplicity
   render() {
+
+    
+
+
     if(!this.state.items){
       return <h1>loading...</h1>
     } else {
@@ -92,7 +108,13 @@ export default class BiPrio extends Component {
                         provided.draggableProps.style
                       )}
                     >
-                      {" #" + (index + 1) + " - " + item.name}
+                      { this.props.type === "internships" ? <span>{`${index + 1} - ${item.name}`}</span> :
+                       <span className="select-wrapper">
+                        <span>#{`${index + 1} - group number: ${item.groupNo}`}</span>
+                        <span>{`leader: ${item.name}`}</span>
+                       </span>
+                       }
+                       {this.props.type === "internships" ? <span onClick={() => this.setPop(item.studentNo)} className="uploadField">␣</span> : void 0 }
                     </div>
                   )}
                 </Draggable>
@@ -103,6 +125,7 @@ export default class BiPrio extends Component {
         </Droppable>
       </DragDropContext>
       <button onClick={() => this.saveHandler()} className ={this.state.canSave ? "btn-active" : "btn-inactive"}>Save</button>
+      <ApplicationPop postId={this.props.postId} isOpen = {this.state.uploadPop} closeWind={this.setPop} postType={this.props.type}></ApplicationPop>
       </div>
     );
   }
@@ -120,10 +143,39 @@ const reorder = (list, startIndex, endIndex) => {
   return result;
 };
 
-const getData = async (type, company, postId) => {
+const ApplicationPop = (props) => {
+
+  
+
+  return(
+    <div className={props.isOpen ? "uploadPop-vis" : "uploadPop-invis"}>
+      <span onClick={() => props.closeWind(false)} className="exit">x</span>
+      <MyEditor userId={props.isOpen} postId={props.postId} postType={props.postType} postOrApp={false} editable={false}></MyEditor>
+    </div>
+  )
+}
+
+
+const getData = async (type, postId) => {
   const result = await fetch(
-    `${Endpoint}/businessPrio.php?type=${type}&company=${company}&postId=${postId}`
+    `${Endpoint}/businessPrio.php?type=${type}&postId=${postId}`
   );
   return result
 };
 
+const postData = async (type, postId, data) => {
+    
+
+  const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({data})
+  };
+  
+  const result = await fetch(
+    `${Endpoint}/businessPrio.php?type=${type}&postId=${postId}`, requestOptions,
+  );
+  
+  return result
+
+};

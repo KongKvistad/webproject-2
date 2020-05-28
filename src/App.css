@@ -145,7 +145,7 @@ html { font-size: 1vw; }
   display: none;
 }
 
-.editor{
+.canEdit{
   background-color: white;
     border: 1px solid black;
     width: 60%;
@@ -156,11 +156,25 @@ html { font-size: 1vw; }
     justify-content: space-evenly;
 }
 
-.edit-public{
+.noEdit{
+  width: 80%;
+  background-color: white;
+    height: 80%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.content > .noEdit {
   width: 100%;
 }
+.noEdit > div {
+  border: unset
+}
 
-.editor > button{
+
+.noEdit > button, .canEdit > button{
   padding: 7px 40px;
   background-color: blue;
   color: white;
@@ -245,6 +259,17 @@ html { font-size: 1vw; }
   cursor: pointer;
     transition: 0.3s ease-out;
 }
+
+.select-wrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+.select-wrapper > span:nth-of-type(2){
+  color: blue;
+  font-weight: bold;
+}
+
 .btn-active{
   background-color: rgb(54, 127, 252);
   color: white
@@ -258,12 +283,13 @@ html { font-size: 1vw; }
 
 .exit{
   background-color: white;
-    padding: 5px 10px;
-   
+    padding: 5px 18px;
     margin-left: auto;
-    margin-right: 2em;
+    margin-right: 4%;
     margin-top: 1em;
-    font-weight: bold;;
+    font-weight: bold;
+    font-size: 2em;
+    
 }
 
 .uploadField{
@@ -709,6 +735,73 @@ h1, h2, h3 {
 }
 
 
+.misc-tool{
+  position: absolute;
+    right: 12%;
+    top: 18%;
+    background-color: #d0d0d0;
+    font-size: 2em;
+    border-radius: 100px;
+    padding: 20px;
+    cursor: pointer;
+    z-index: 50;
+}
+
+
+.miscWindow{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5% 5%;
+}
+
+ul.companies {
+  list-style: none;
+    width: 100%;
+}
+
+li.compTab {
+  display: flex;
+  min-height: 12em;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+}
+
+.compInfo {
+  flex-basis: 30%;
+}
+
+
+ul.slots {
+  flex-basis: 68%;
+  height: 7em;
+    list-style: none;
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 1% 1%;
+}
+
+.slots > li {
+  width: 15%;
+    background-color: gray;
+    margin-left: 5px;
+}
+
+.students{
+  width: 70%;
+
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 9%);
+  list-style: none;
+  
+}
+.students > li{
+  height: 2em;
+  background-color: #0000ff33;
+}
 
 
 /*________MEDIA SCREEN MAX 800PX________*/

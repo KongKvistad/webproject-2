@@ -17,7 +17,7 @@ function MyEditor(props) {
   
   let type = props.postType
   let id = props.postId
-  let userId = user.studentNo || user.name || user.employeeNo
+  let userId = props.userId ? props.userId : user.studentNo || user.name || user.employeeNo
 
     useEffect( () => {
         
@@ -51,7 +51,7 @@ function MyEditor(props) {
         })
 
 
-    },[id])
+    },[id, userId])
 
 
   function saveText () {
@@ -61,7 +61,7 @@ function MyEditor(props) {
         data.postId = id
         data.userId = userId
         data.appExist = appExists
-
+        console.log(data)
         postData(data)
         .then(res => res.json())
         .then(final => {
@@ -87,13 +87,14 @@ function MyEditor(props) {
       return <h3>loading...</h3>
   } else {
     return (
-        <div className={props.postOrApp ? "editor edit-public" : "editor"}>
-            <BlockStyleControls
+        <div className={props.editable ? "canEdit" : "noEdit"}>
+            {props.editable ? <BlockStyleControls
                 editorState={editorState}
                 onToggle={toggleBlockType}
                 />
-            <Editor editorState={editorState} onChange={setEditorState}/>
-            <button onClick={()=> saveText()}>Save</button> 
+              : void 0}
+            <Editor readOnly={!props.editable} editorState={editorState} onChange={setEditorState}/>
+            {props.editable ? <button onClick={()=> saveText()}>Save</button> : void 0}
         </div>
       );
   }
