@@ -150,7 +150,7 @@ li {
 .canEdit{
   background-color: white;
     border: 1px solid black;
-    width: 60%;
+    width: 100%;
     height: 80%;
     display: flex;
     flex-direction: column;
@@ -374,7 +374,7 @@ button:focus {
   padding: 2% 0%;
 
 }
-.toolbar > button{
+.ideaButton{
   background-color: #00509e;
     color: white;
     font-size: 80%;
@@ -384,6 +384,19 @@ button:focus {
     border: 1px solid #5f5f5f;
     white-space: nowrap;
     cursor: pointer;
+}
+
+.nonButton{
+  background-color: #00509e;
+  color: white;
+    font-size: 80%;
+    border-radius: 3px;
+    padding: 7px 3%;
+    font-weight: bold;
+    border: 1px solid #5f5f5f;
+    white-space: nowrap;
+    cursor: pointer;
+    opacity: 0.4;
 }
 /*Søkebar */
 .search {
@@ -742,7 +755,7 @@ h1 {
 .misc-tool{
   position: absolute;
     right: 12%;
-    top: 18%;
+    top: 11%;
     background-color: #d0d0d0;
     font-size: 2em;
     border-radius: 100px;
@@ -757,7 +770,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 5% 5%;
+    padding: 5% 4% 0% 10%;
 }
 
 ul.companies {
@@ -767,30 +780,57 @@ ul.companies {
 
 li.compTab {
   display: flex;
-  min-height: 12em;
-  justify-content: space-between;
-  flex-direction: row-reverse;
-  flex-wrap: wrap;
+    min-height: 12em;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 .compInfo {
   flex-basis: 30%;
+  display:flex;
+  flex-direction: column;
+}
+.compInfo > span:first-of-type{
+  color: #080863;
+  font-size: 2em;
+  font-weight: bold;
 }
 
+.compInfo > span:nth-child(2) {
+  color:  #080863;
+  font-weight: bold;
+}
 
 ul.slots {
-  flex-basis: 68%;
-  height: 7em;
+  flex-basis: 67%;
+    height: 7em;
     list-style: none;
     display: flex;
     flex-direction: row-reverse;
     padding: 1% 1%;
+    border: 1px solid black;
 }
 
-.slots > li {
+.slot {
   width: 15%;
-    background-color: gray;
-    margin-left: 5px;
+  background-color: #cacaca;
+  margin-left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.slot-active{
+  width: 15%;
+  background-color: #72f1a5;
+  margin-left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .students{
@@ -800,13 +840,83 @@ ul.slots {
   display: grid;
   grid-template-columns: repeat(auto-fit, 9%);
   list-style: none;
+  grid-gap: 5px;
   
 }
 .students > li{
-  height: 2em;
-  background-color: #0000ff33;
+  overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: #003577cc;
+    cursor: pointer;
+    height: 2em;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
+.students > li:hover {
+  overflow: visible;
+}
+.students > li:hover>ul {
+  display: flex;
+}
+.studPrio{
+  display: none;
+  background-color: #ffffff;
+    flex-direction: column;
+    position: absolute;
+    width: 90%;
+    font-size: 70%;
+    padding: 4% 4%;
+    font-weight: 600;
+    top: 120%;
+    /* border: 1px solid gray; */
+    color: black;
+    list-style: none;
+    box-shadow: 0px 2px 5px 4px #00000066;
+}
+
+.studPrio > li {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.compPrio{
+  display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 5em;
+    font-size: 90%;
+    list-style: none;
+    margin-top: 2%;
+}
+
+.windowTitle{
+  visibility: hidden;
+  position: absolute;
+}
+
+.justText{
+  padding: 0% 9%;
+    display: flex;
+    width: auto;
+    justify-content: flex-start;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.closeForm{
+  position: absolute;
+    right: 2%;
+    top: -1%;
+    background-color: white;
+    padding: 10px 17px;
+    border: 1px solid black;
+}
 
 /*________MEDIA SCREEN MAX 800PX________*/
 @media screen and (max-width:800px) { /*box-grid for mindre skjermer*/

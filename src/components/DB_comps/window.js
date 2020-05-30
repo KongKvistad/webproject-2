@@ -88,9 +88,9 @@ export default class Window extends React.Component {
         <Router>
           <Switch>
           <Route exact path="/dashboard">
-          {this.props.userType === "employeeNo" ? <Link to="/test" className="misc-tool" >🛠</Link> : void 0}
+          {this.props.userType === "employeeNo" ? <Link to="/dashboard/test" className="misc-tool" >🛠</Link> : void 0}
           <div className="parentwind">
-            <h1>Dashboard</h1>
+            <h1 className="windowTitle">Dashboard</h1>
 
             
 
@@ -121,7 +121,7 @@ export default class Window extends React.Component {
           </div>
 
           </Route>
-          <Route exact path="/test">
+          <Route exact path="/dashboard/test">
 
                 <MiscTool></MiscTool>
 

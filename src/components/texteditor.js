@@ -164,7 +164,7 @@ const postData = async (data) => {
     };
     
     const result = await fetch(
-      `${Endpoint}/applications.php`, requestOptions,
+      `${Endpoint}/applications.php?`, requestOptions,
     );
     
     return result
@@ -176,7 +176,7 @@ const postData = async (data) => {
 
   const getData = async (data) => {
     const result = await fetch(
-      `${Endpoint}/applications.php?userId=${data.userId}&postId=${data.postId}&public=${data.postOrApp}`
+      `${Endpoint}/applications.php?userId=${data.userId}&postId=${data.postId}&public=${data.postOrApp}&type=${data.postType}`
     );
     return result
   };

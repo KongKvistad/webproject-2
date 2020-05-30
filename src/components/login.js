@@ -31,7 +31,7 @@ export default function Login(props){
                 let token = parseJwt(fin.token)
                 localStorage.setItem("token",JSON.stringify(token))
                 
-                window.location.href=window.location.origin
+                window.location.href=window.location.origin+"/dashboard"
                 
   
             }else {

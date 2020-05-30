@@ -30,7 +30,8 @@ export default class Desc extends React.Component {
             if(typeof(fin) === "string"){
                 alert(fin)
             } else {
-                window.location.href=window.location.origin
+                
+                window.location.href=window.location.origin + "/marketplace"
             }
         })
 
@@ -53,7 +54,7 @@ export default class Desc extends React.Component {
         } else if (this.props.userType === "employeeNo" && this.props.activeCat === "pitched"){
             return(
                 <div>
-                    <button className="edit">Edit</button>
+                 
                     <button className="approve" onClick={()=> this.approvePost(con)}>Approve</button>
                 </div>
             );
@@ -81,7 +82,7 @@ export default class Desc extends React.Component {
                     </div>
                     <div className="content">
                         <h2>Description</h2>
-                        <MyEditor postId={context.popData.id} postType={this.props.radioVal} postOrApp = {true} editable={false}></MyEditor>
+                        <MyEditor postId={context.popData.id} postType={this.props.radioVal} postOrApp = {true} editable={this.props.activeCat === "pitched" ? true : false}></MyEditor>
                     </div>
                     {this.makeBtn(context)}
               

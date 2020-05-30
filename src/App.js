@@ -23,27 +23,33 @@ import {PrioContext} from "./prioContext.js"
 
 export default function App() {
   const [auth, setAuth] = useState(false);
+  const [wasToken, setWasToken] = useState(false);
 
   
   //auth onload for root component
   useEffect(() => {
     
     let lsToken = localStorage.getItem('token')
+    console.log(lsToken)
     let token = window.location.pathname
     let tokenChk = parseJwt(token)
    
     
     //option 1: exists in localstorage
-    if(lsToken){
+    if(lsToken !== null){
       let data = JSON.parse(lsToken) 
       console.log(auth)
       setAuth(data)
+
     } 
     //option 2: token is supplied in url
     else if (tokenChk.hasOwnProperty("studentNo") || tokenChk.hasOwnProperty("employeeNo") || tokenChk.hasOwnProperty("contactName")){
       localStorage.setItem('token', JSON.stringify(tokenChk));
       
+      setWasToken(true)
       setAuth(tokenChk)
+
+      
       console.log(auth)
     } 
     else{
@@ -60,7 +66,7 @@ export default function App() {
         setVal: (inp) => setAuth(inp)}}>
       <Router>
       <Route path= {["/","/home","/:token"]}>
-        <Home></Home>
+        <Home wasToken={wasToken}></Home>
       </Route>
       </Router>
       </UserContext.Provider>

@@ -38,24 +38,24 @@ export default function DashBoxes(props) {
             <div className="box-row">
                 <div className="dashbox">
                     <h2>pitches</h2>
-                        <ul className="lowHalf">
-                            
-                        </ul>
+                        <p className="lowHalf justText">
+                            {"There are " + props.data.pitches + " new " + props.page + " for review"}        
+                        </p>
                     
                 </div>
                 <div className="dashbox">
                     <h2>students</h2>
-                        <ul className="lowHalf">
-                            
-                        </ul>
+                    <p className="lowHalf justText">
+                    {"There are " + props.data.studApply + " students that havent applied yet "} 
+                            </p>
                     
                 </div>
                 
                 <div className="dashbox">
                     <h2>companies</h2>
-                        <ul className="lowHalf">
-                            
-                        </ul>
+                    <p className="lowHalf justText">
+                    {"There are " + props.data.compApply + " companies that havent prioritized applicants yet "}
+                    </p>
                     
                 </div>
             </div>

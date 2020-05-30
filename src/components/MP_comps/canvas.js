@@ -98,7 +98,9 @@ export default class Canvas extends React.Component {
     
     
     render() {
-     
+    
+    const userType = this.props.userType
+    
     const cats = Object.keys(this.state.mpData)
         
       
@@ -112,7 +114,7 @@ export default class Canvas extends React.Component {
                     <ul>{this.tabshandler()}</ul>
                     
                     <div className={this.state.isFormOpen ? "form-visible" : "form-invisible"}>
-                        <Form></Form>
+                        <Form closeFunc = {this.handleForm.bind(this)}></Form>
                     </div>
                     
                     <Desc data={this.boxhandler()} userType={this.props.userType} activeCat={this.state.currPage} radioVal={this.state.radioVal}></Desc>
@@ -136,7 +138,7 @@ export default class Canvas extends React.Component {
                                 </div> :
                                 void (0)
                             }
-                            <button onClick={() => this.handleForm()}>+ New idea</button>
+                            <button className={!userType ? "nonButton" : "ideaButton"} onClick={!userType ? () =>  alert("you have to login to post") : () => this.handleForm()}>+ New idea</button>
                         </div>
                         <div className="mp-container" >
 

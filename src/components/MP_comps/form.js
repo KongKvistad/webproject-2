@@ -86,8 +86,10 @@ export default class Form extends React.Component {
 
         return (
             <form>
-                <div class="forminfo">
-                    <div class="formtitle">
+                <p className="closeForm" onClick={() => this.props.closeFunc()}>X</p>
+                <div className="forminfo">
+                    
+                    <div className="formtitle">
                         <label>
                             Title:
                             <br /><input 
@@ -96,8 +98,9 @@ export default class Form extends React.Component {
                                 value={this.state.title}
                                 onChange={this.handleChange}/>
                         </label>
+                        
                     </div>
-                    <div class="formleft">
+                    <div className="formleft">
                         <label>
                             Company Name:
                             <br /><input
@@ -107,7 +110,7 @@ export default class Form extends React.Component {
                                 onChange={this.handleChange} />
                         </label>
                     </div>
-                    <div class="formmiddle">
+                    <div className="formmiddle">
                         <label>
                             Author:
                             <br /><input
@@ -119,7 +122,7 @@ export default class Form extends React.Component {
                     </div>
                 
                
-                    <div class="formright">
+                    <div className="formright">
                         
                         <label>
                             <input type="radio" name="postType" value="internship" checked={this.state.postType === 'internship'} onChange={this.handleChange}/>
@@ -146,8 +149,8 @@ export default class Form extends React.Component {
                     </div>
                 </div>
 
-                <div class="forminfo">
-                    <div class="formleft">
+                <div className="forminfo">
+                    <div className="formleft">
                         <label>
                             Start date:
                             <br /><input 
@@ -157,7 +160,7 @@ export default class Form extends React.Component {
                                 type="date"/>
                         </label>
                     </div>
-                    <div class="formmiddle">
+                    <div className="formmiddle">
                         <label>
                             End date:
                             <br /><input
@@ -167,7 +170,7 @@ export default class Form extends React.Component {
                                 type="date"/>
                         </label>
                     </div>
-                    <div class="formright">
+                    <div className="formright">
                         {/* <label>
                                 <input
                                     name="isStudent"
@@ -195,7 +198,7 @@ export default class Form extends React.Component {
                     </div>
 
                 </div>
-               <div class="formdesc">
+               <div className="formdesc">
                     <label>
                         Description:
                         <br /><textarea name="description" value={this.state.description} onChange={this.handleChange}></textarea>

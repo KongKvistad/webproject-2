@@ -44,6 +44,8 @@ export default function Home(props) {
     
  
     useEffect( () =>{
+
+      console.log(props.wasToken)
       
       fetchPrio().then(res => res.json())
       .then(json => {
@@ -81,7 +83,7 @@ export default function Home(props) {
       
       return (
         <Router>
-        <Redirect to="/dashboard"></Redirect>    
+        {props.wasToken ? <Redirect to="/dashboard"></Redirect> : void 0}    
         
         <ul className="navbar">
         <Link to="/about">Log Out</Link>
