@@ -1,6 +1,7 @@
 import React, {useContext} from "react";
 import {UserContext} from "../../UserContext.js"
 import Endpoint from "../endpoint.js"
+import FormDesc from "./formDesc.js"
 
 
 
@@ -69,7 +70,7 @@ export default class Form extends React.Component {
       
 
 
-        fetchData(data)
+        postData(data)
         .then(res => res.json())
         .then(result => {
             
@@ -81,6 +82,10 @@ export default class Form extends React.Component {
         })
     }
 
+
+    saveText= (text) => {
+        this.setState({description: text})
+    }
 
     render(){
 
@@ -201,7 +206,7 @@ export default class Form extends React.Component {
                <div className="formdesc">
                     <label>
                         Description:
-                        <br /><textarea name="description" value={this.state.description} onChange={this.handleChange}></textarea>
+                        <br /><FormDesc saveText={this.saveText}></FormDesc>
                     </label>
                 </div>
 
@@ -217,7 +222,7 @@ export default class Form extends React.Component {
 }
 
 
-const fetchData = async (data) => {
+const postData = async (data) => {
     
    
 
