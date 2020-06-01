@@ -53,7 +53,7 @@ export default class Timeline extends React.Component {
         return(
         
         <div className="timeline">
-                {/* <h2>Timeline</h2> */}
+                <h2 className = "timelineheader">Timeline: </h2>
                
                 <Node data={currUnix} edgeNode={"Current date"}></Node>
                 

@@ -98,3 +98,8 @@
     margin: 0px;
     margin-bottom: 0%;
 }
+
+.timelineheader {
+    position: absolute;
+    bottom: 12%;
+}
