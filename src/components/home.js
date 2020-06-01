@@ -87,7 +87,7 @@ export default function Home(props) {
         
         <ul className="navbar">
         <Link to="/about">Log Out</Link>
-        <li><Link to="/about">About</Link></li>
+        <li><Link to="/aboutPage">About</Link></li>
         <li><Link to="/marketplace">Marketplace</Link></li>
         <li><Link to="/dashboard">Dashboard</Link></li>
         
@@ -135,6 +135,9 @@ export default function Home(props) {
         <Route exact path="/about">
           <About loggedOut = {true}></About>
         </Route>
+        <Route exact path="/aboutPage">
+          <About loggedOut = {false}></About>
+        </Route>
         </Router>
         );
         // if usertype is company
@@ -144,7 +147,7 @@ export default function Home(props) {
         <Router>
         <Redirect to="/marketplace"></Redirect> 
         <ul className="navbar">  
-        <li><Link to="/about">About</Link></li>
+        <li><Link to="/aboutPage">About</Link></li>
         <li><Link to="/marketplace">Marketplace</Link></li>
         <li><Link to="/about">Log Out</Link></li>
         </ul>
@@ -162,6 +165,9 @@ export default function Home(props) {
 
         <Route exact path="/about">
           <About loggedOut = {true}></About>
+        </Route>
+        <Route exact path="/aboutPage">
+          <About loggedOut = {false}></About>
         </Route>
         
         </Router>
