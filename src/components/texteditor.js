@@ -95,7 +95,7 @@ function MyEditor(props) {
                 />
               : void 0}
             <Editor readOnly={!props.editable} editorState={editorState} onChange={setEditorState}/>
-            {props.editable ? <button onClick={()=> saveText()}>Save</button> : void 0}
+            {props.editable ? <button className="textEditorSave" onClick={()=> saveText()}>Save</button> : void 0}
         </div>
       );
   }
