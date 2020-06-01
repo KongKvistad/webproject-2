@@ -21,6 +21,14 @@ export default class BoxComp extends React.Component {
       }
     }
 
+    checkCompPrio(entity){
+      if(JSON.parse(entity.priorities)){
+        return <div>candidates selected</div>
+      } else {
+        return <div>still choosing</div>
+      }
+    }
+
 
     tagshandler = (item) => {
       
@@ -38,7 +46,7 @@ export default class BoxComp extends React.Component {
         return(
         <div>
           
-          {this.checkApplied(item)}
+          {this.checkCompPrio(item)}
           
         </div>
         );
@@ -102,9 +110,10 @@ export default class BoxComp extends React.Component {
         else if(this.props.activeCat === "companies"){
           return (
             <div className="boxes">
-              {this.props.data.map((item, idx) =>
+              {this.props.data[this.props.radioVal].map((item, idx) =>
                 <div key = {idx} className="box">
-                <h2 key={"heading" + idx}>{item.name}</h2>
+                <h2 key={"heading" + idx}>{item.title}</h2>
+                  <h3 key={"owner" + idx}>by {item.companyName}</h3>
                 {this.tagshandler(item)}
                 </div>
               )}
@@ -135,7 +144,7 @@ export default class BoxComp extends React.Component {
                   <PrioContext.Consumer key={idx}>
                     {(context) => (
                       <div className="mypostwraper">
-                        <div key={idx} className="box" onClick={this.props.data.intActive === "y" ? (e) => this.openPicker(e, "internships") : () => context.setPop(item)}>
+                        <div key={idx} className="box" onClick={this.props.data.intActive === "y" ? (e) => this.openPicker(e, "internships") : () => {item.type = "internships"; context.setPop(item)}}>
                           <h2 key={"heading" + idx}>{item.title}</h2>
                           <h3 key={"owner" + idx}>by {item.companyName}</h3>
                           {this.tagshandler(item)}
@@ -161,7 +170,7 @@ export default class BoxComp extends React.Component {
                 <PrioContext.Consumer key={idx}>
                 {(context) => (
                 <div className="mypostwraper">
-                <div key = {idx} className="box" onClick = {this.props.data.projActive === "y" ? (e) => this.openPicker(e, "projects") :() => context.setPop(item)}>
+                <div key = {idx} className="box" onClick = {this.props.data.projActive === "y" ? (e) => this.openPicker(e, "projects") :() => {item.type = "projects"; context.setPop(item)}}>
                   <h2 key={"heading" + idx}>{item.title}</h2>
                   <h3 key={"owner" + idx}>by {item.companyName}</h3>
                   {this.tagshandler(item)}
@@ -183,9 +192,11 @@ export default class BoxComp extends React.Component {
             
         );
         } else {
+
+
             return (
               <div className={this.studView()}>
-                {this.props.data.map((item, idx) =>
+                {this.props.data.map((item, idx) => item.visibility === "visible" || this.props.user === "employeeNo" || this.props.user === "studentNo" ? 
                 <PrioContext.Consumer key={idx}>
                   {(context) => (
                   <div key = {idx} className="box" onClick = {() => context.setPop(item)}>
@@ -195,7 +206,7 @@ export default class BoxComp extends React.Component {
                   </div>
                   )}
                 </PrioContext.Consumer>
-                )}
+                : void(0))}
               </div>
                                                                       
             

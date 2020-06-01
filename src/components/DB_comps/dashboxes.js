@@ -9,7 +9,7 @@ export default function DashBoxes(props) {
     
    
     
-    const help = props.data.coordinator
+    const help = props.data.coordinator || props.data.mentor
 
     if(props.userType === "studentNo"){
         return(
@@ -25,11 +25,12 @@ export default function DashBoxes(props) {
                 
                 <div className="dashbox">
                     <h2>{props.page === "internships" ? "Coordinator" : "Mentor"}</h2>
-                    {help ? <ul className="lowHalf">
+                    {typeof(help) === "string" ?
+                    <p className="lowHalf justText">{help}</p>  :
+                     <ul className="lowHalf">
                         <li>{help.name}</li>
-                        <li>{help.phoneNo}</li>
                         <li>{help.email}</li>
-                    </ul> : void(0)}
+                    </ul>}
                 </div>
             </div>
         )
@@ -46,7 +47,7 @@ export default function DashBoxes(props) {
                 <div className="dashbox">
                     <h2>students</h2>
                     <p className="lowHalf justText">
-                    {"There are " + props.data.studApply + " students that havent applied yet "} 
+                    {props.page === "internships" ? "There are " + props.data.studApply + " students that havent applied yet " : props.data.studApply + " groups havent applied yet " } 
                             </p>
                     
                 </div>

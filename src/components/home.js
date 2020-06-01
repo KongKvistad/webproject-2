@@ -45,7 +45,7 @@ export default function Home(props) {
  
     useEffect( () =>{
 
-      console.log(props.wasToken)
+     
       
       fetchPrio().then(res => res.json())
       .then(json => {
@@ -117,6 +117,7 @@ export default function Home(props) {
             savePos2: savePos2,
             setSave2: (bool) => setSave2(bool),
 
+            groupNo: groupNo,
 
             fetchPrio: () => fetchPrio(),
             

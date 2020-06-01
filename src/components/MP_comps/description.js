@@ -64,7 +64,7 @@ export default class Desc extends React.Component {
     }
     
     render() {
-        
+        const postType = this.props.activeCat === "pitched" ? this.props.radioVal : this.props.activeCat
 
         return(
             <PrioContext.Consumer>
@@ -82,7 +82,10 @@ export default class Desc extends React.Component {
                     </div>
                     <div className="content">
                         <h2>Description</h2>
-                        <MyEditor postId={context.popData.id} postType={this.props.radioVal} postOrApp = {true} editable={this.props.activeCat === "pitched" ? true : false}></MyEditor>
+                        <MyEditor postId={context.popData.id} 
+                        postType={this.props.activeCat === "my_posts" ? context.popData.type : postType} 
+                        postOrApp = {true} 
+                        editable={this.props.activeCat === "pitched" || this.props.activeCat === "my_posts" ? true : false}></MyEditor>
                     </div>
                     {this.makeBtn(context)}
               

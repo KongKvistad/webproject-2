@@ -46,9 +46,9 @@ const GroupOrPoc = (props) => {
             <div className="dashbox">
                         
                 <h2>POC</h2>
-                <div className="lowHalf">
-                
-                </div>
+                <p className="lowHalf justText">
+                {props.data.poc}
+                </p>
             </div>
         )
     }

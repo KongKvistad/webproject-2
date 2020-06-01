@@ -86,7 +86,7 @@ export default class DragDrop extends Component {
       return <p>loading</p>
     }
     else if (typeof(context.projects) === "string" && this.props.activeCat === "projects"){
-      return <p>{context.projects}</p>
+      return <p className="lowHalf justText">{context.projects}</p>
     }
     else {
       
