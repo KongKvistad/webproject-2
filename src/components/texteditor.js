@@ -61,6 +61,7 @@ function MyEditor(props) {
         data.postId = id
         data.userId = userId
         data.appExist = appExists
+        data.isApplication = props.application ? true : false
         console.log(data)
         postData(data)
         .then(res => res.json())

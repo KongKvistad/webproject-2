@@ -164,7 +164,7 @@ const ApplicationPop = (props) => {
   return(
     <div className={props.isOpen ? "uploadPop-vis" : "uploadPop-invis"}>
       <span onClick={() => props.closeWind(false)} className="exit">x</span>
-      <MyEditor postId={props.isOpen} postType={props.postType} postOrApp={false} editable={true}></MyEditor>
+      <MyEditor postId={props.isOpen} postType={props.postType} postOrApp={false} editable={true} application={true}></MyEditor>
     </div>
   )
 }
